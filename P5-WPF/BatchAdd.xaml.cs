@@ -18,9 +18,7 @@ using MySql.Data;
 
 namespace P5_WPF
 {
-    /// <summary>
-    /// Interaction logic for BatchAdd.xaml
-    /// </summary>
+    
     public partial class BatchAdd : Window
     {
         public BatchAdd()
@@ -36,7 +34,7 @@ namespace P5_WPF
                 try
                 {
                     {
-
+                        
                         MySqlCommand cmd = new MySqlCommand("INSERT INTO batch (BatchNr, Temp, Shelf) Values (@BatchNr, @Temp, @Shelf) ");
                         cmd.Parameters.AddWithValue("@BatchNr", BatchNr.Text);
                         cmd.Parameters.AddWithValue("@Temp", Temp.Text);
