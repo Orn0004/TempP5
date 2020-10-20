@@ -18,7 +18,7 @@ using MySql.Data;
 
 namespace P5_WPF
 {
-    //test branch
+   
     public partial class BatchAdd : Window
     {
         public BatchAdd()
