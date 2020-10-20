@@ -18,7 +18,7 @@ using MySql.Data;
 
 namespace P5_WPF
 {
-    
+    //test branch
     public partial class BatchAdd : Window
     {
         public BatchAdd()
@@ -27,15 +27,12 @@ namespace P5_WPF
         }
         private void addToDB(object sender, RoutedEventArgs e)
         {
-
-
-            string CS = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            var CS = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
             using (MySqlConnection con = new MySqlConnection(CS))
                 try
                 {
-                    {
-                        
-                        MySqlCommand cmd = new MySqlCommand("INSERT INTO batch (BatchNr, Temp, Shelf) Values (@BatchNr, @Temp, @Shelf) ");
+                    {              
+                        MySqlCommand cmd = new MySqlCommand("INSERT INTO batch (BatchNr, Temp, Shelf) Values (@BatchNr, @Temp, @Shelf) ",con);
                         cmd.Parameters.AddWithValue("@BatchNr", BatchNr.Text);
                         cmd.Parameters.AddWithValue("@Temp", Temp.Text);
                         cmd.Parameters.AddWithValue("@Shelf", Shelf.Text);
