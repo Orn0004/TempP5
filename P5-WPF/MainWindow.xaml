@@ -21,7 +21,12 @@
                 <TextBlock>Tilføj Batch</TextBlock>
             </WrapPanel>
         </Button>
-        
+        <Button Click="Test_Click" HorizontalAlignment="Center"  Background="CadetBlue" Foreground="PaleGreen" FontSize="20" FontWeight="Bold" Margin="549,352,30,22" Width="213">
+            <WrapPanel>
+                <TextBlock><Run Text="TEST"/></TextBlock>
+            </WrapPanel>
+        </Button>
+
 
 
 

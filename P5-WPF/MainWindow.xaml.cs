@@ -32,6 +32,19 @@ namespace P5_WPF
             BatchAdd batchAdd = new BatchAdd();
             batchAdd.Show();
         }
+
+        private void Test_Click(object sender, RoutedEventArgs e)
+        {
+            
+            this.Hide();
+
+            TestWindow testWindow = new TestWindow();
+            testWindow.Show();
+
+            testWindow.Left = this.Left;
+            testWindow.Top = this.Top;
+            
+        }
     }
    
 }
