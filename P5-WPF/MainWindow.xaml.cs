@@ -35,16 +35,16 @@ namespace P5_WPF
 
         private void Test_Click(object sender, RoutedEventArgs e)
         {
-            
-            this.Hide();
 
-            TestWindow testWindow = new TestWindow();
-            testWindow.Show();
+            test_button.Visibility = welcome_text.Visibility = tables_button.Visibility = Visibility.Hidden;
+            back_button.Visibility = Visibility.Visible;
+        }
 
-            testWindow.Left = this.Left;
-            testWindow.Top = this.Top;
-            
+        private void back_button_Click(object sender, RoutedEventArgs e)
+        {
+            test_button.Visibility = welcome_text.Visibility = tables_button.Visibility = Visibility.Visible;
+            back_button.Visibility = Visibility.Hidden;
         }
     }
-   
+
 }

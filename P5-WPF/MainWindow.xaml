@@ -13,21 +13,24 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Height="40" Margin="321,10,308,369" Grid.ColumnSpan="2" Width="163">
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Height="40" Margin="321,10,308,369" Grid.ColumnSpan="2" Width="163" Name="welcome_text">
              Novefa Temp
         </TextBlock>
-        <Button Click="Batch_Click" HorizontalAlignment="Center"  FontWeight="Bold" Margin="338,134,308,240" Width="146" Grid.ColumnSpan="2">
+        <Button Click="Batch_Click" HorizontalAlignment="Center"  FontWeight="Bold" Margin="338,134,308,240" Width="146" Grid.ColumnSpan="2"  Name="tables_button">
             <WrapPanel>
                 <TextBlock>Tilføj Batch</TextBlock>
             </WrapPanel>
         </Button>
-        <Button Click="Test_Click" HorizontalAlignment="Center"  Background="CadetBlue" Foreground="PaleGreen" FontSize="20" FontWeight="Bold" Margin="549,352,30,22" Width="213">
+        <Button Click="Test_Click" HorizontalAlignment="Center"  Background="CadetBlue" Foreground="PaleGreen" FontSize="20" FontWeight="Bold" Margin="549,352,30,22" Width="213" Name="test_button">
             <WrapPanel>
                 <TextBlock><Run Text="TEST"/></TextBlock>
             </WrapPanel>
         </Button>
-
-
+        <Button HorizontalAlignment="Center" Visibility="Hidden" Background="CadetBlue" Foreground="Orange" FontSize="20" FontWeight="Bold" Margin="23,343,548,31" Width="213" Click="back_button_Click" Name="back_button">
+            <WrapPanel>
+                <TextBlock><Run Text="TEST"/></TextBlock>
+            </WrapPanel>
+        </Button>
 
 
 
