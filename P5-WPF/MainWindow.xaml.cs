@@ -33,7 +33,7 @@ namespace P5_WPF
             batchAdd.Show();
         }
 
-        private void Test_Click(object sender, RoutedEventArgs e)
+        private void BatchInfo(object sender, RoutedEventArgs e)
         {
 
             test_button.Visibility = welcome_text.Visibility = tables_button.Visibility = Visibility.Hidden;
