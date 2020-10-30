@@ -30,7 +30,7 @@ namespace P5_WPF
         {
 
             InitializeComponent();
-            FillDataGrid();
+            //FillDataGrid();
 
         }
         private void Batch_Click(object sender, RoutedEventArgs e)
@@ -52,21 +52,6 @@ namespace P5_WPF
         //    test_button.Visibility = welcome_text.Visibility = tables_button.Visibility = Visibility.Visible;
         //    back_button.Visibility = Visibility.Hidden;
         //}
-
-        private void FillDataGrid()
-        {
-            var CS = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
-            string CmdString = string.Empty;
-            using (MySqlConnection con = new MySqlConnection(CS))
-            {
-                CmdString = "SELECT DISTINCT BatchID FROM aktivetemperaturer";
-                MySqlCommand cmd = new MySqlCommand(CmdString, con);
-                MySqlDataAdapter sda = new MySqlDataAdapter(cmd);
-                DataTable dt = new DataTable("Batches");
-                sda.Fill(dt);
-                grdBatches.ItemsSource = dt.DefaultView;
-            }
-        }
 
     }
 

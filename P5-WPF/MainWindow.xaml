@@ -8,8 +8,21 @@
         Title="MainWindow" Height="450" Width="800">
 
 
-    <DataGrid Name="grdBatches"/>
-
+    <Window.DataContext>
+        <local:BatchesVm />
+    </Window.DataContext>
+    <Grid>
+        <ListView ItemsSource="{Binding AlleBatches}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="BatchID" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Temperatur_Celsius}" Header="Seneste Temperaturmåling" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Luftfugtighed_Procent}" Header="Seneste Luftfugtighedsmåling" Width="100"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+    
     <!--<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Height="40" Margin="321,10,308,369" Grid.ColumnSpan="2" Width="163" Name="welcome_text">
              Novefa Temp
     </TextBlock>
