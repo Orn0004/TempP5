@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Configuration;
 using MySql.Data.MySqlClient;
 using System.Data;
+using P5_WPF.ViewModels;
 
 namespace P5_WPF
 {
@@ -23,14 +24,11 @@ namespace P5_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly BatchesModel BatchID;
-        private IEnumerable<BatchesVm> Batches;
 
         public MainWindow()
         {
 
             InitializeComponent();
-            //FillDataGrid();
 
         }
         private void Batch_Click(object sender, RoutedEventArgs e)
@@ -40,19 +38,23 @@ namespace P5_WPF
             batchAdd.Show();
         }
 
-        //private void BatchInfo(object sender, RoutedEventArgs e)
-        //{
+        private void BatchInfo(object sender, RoutedEventArgs e)
+        {
 
-        //    test_button.Visibility = welcome_text.Visibility = tables_button.Visibility = Visibility.Hidden;
-        //    back_button.Visibility = Visibility.Visible;
-        //}
+            test_button.Visibility = aktivebatches.Visibility = tables_button.Visibility = Visibility.Hidden;
+            back_button.Visibility = Visibility.Visible;
+        }
 
-        //private void back_button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    test_button.Visibility = welcome_text.Visibility = tables_button.Visibility = Visibility.Visible;
-        //    back_button.Visibility = Visibility.Hidden;
-        //}
-
+        private void back_button_Click(object sender, RoutedEventArgs e)
+        {
+            test_button.Visibility = aktivebatches.Visibility = tables_button.Visibility = Visibility.Visible;
+            back_button.Visibility = Visibility.Hidden;
+        }
+        private void batchesList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            SingleBatch_Window single = new SingleBatch_Window();
+            single.Show();
+        }
     }
 
 }

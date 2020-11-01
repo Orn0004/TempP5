@@ -1,0 +1,31 @@
+﻿<Window x:Class="P5_WPF.SingleBatch_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:P5_WPF" xmlns:local1="clr-namespace:P5_WPF.ViewModels"
+        mc:Ignorable="d"
+        Title="{Binding Path=myTitle}">
+
+    <Window.DataContext>
+        <local1:SingleBatchVm />
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <!--<ListView ItemsSource="{Binding singleBatch}" x:Name="batchinfo" MouseDoubleClick="batchesList_MouseDoubleClick" Margin="166,90,57,73" Grid.ColumnSpan="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="BatchID" Width="70"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Temperatur_Celsius}" Header="Seneste Temperaturmåling" Width="160"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Luftfugtighed_Procent}" Header="Seneste Luftfugtighedsmåling" Width="170"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Tidspunkt}" Header="Tidspunkt" Width="150"/>
+                </GridView>
+            </ListView.View>
+        </ListView>-->
+
+    </Grid>
+
+</Window>

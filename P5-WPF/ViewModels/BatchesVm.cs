@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 using System.Windows;
 
 namespace P5_WPF
-{
-    class BatchesVm
-    {
-        //private IList<BatchesModel> _BatchesList;
-        public DataView AlleBatches { get; private set; }
 
+{
+    public class BatchesVm
+    {
+        public DataView allBatches { get; private set; }
+        public IEnumerable<int> BatchIds { get; private set; }
         public BatchesVm()
         {
             var CS = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
@@ -23,12 +23,12 @@ namespace P5_WPF
             {
                 using (MySqlConnection connection = new MySqlConnection(CS))
                 {
-                    string CmdString = "SELECT BatchID, Temperatur_Celsius, Luftfugtighed_Procent FROM aktivetemperaturer GROUP BY BatchID HAVING COUNT(*) > 1";
+                    string CmdString = "select BatchID,Temperatur_Celsius,Luftfugtighed_Procent,Tidspunkt from (select BatchID,Temperatur_Celsius,Luftfugtighed_Procent,Tidspunkt,row_number() over(partition by BatchID order by Tidspunkt desc) as rn from aktivetemperaturer) t where t.rn = 1;";
                     MySqlDataAdapter adapter = new MySqlDataAdapter();
                     adapter.SelectCommand = new MySqlCommand(CmdString, connection);
                     adapter.Fill(dt);
                 }
-                AlleBatches = dt.DefaultView;
+                allBatches = dt.DefaultView;
             }
 
             catch (Exception ex)
@@ -42,44 +42,5 @@ namespace P5_WPF
     }
 }
 
-//public IList<User> Users
-//{
-//    get { return _UsersList; }
-//    set { _UsersList = value; }
-//}
-
-//private ICommand mUpdater;
-//public ICommand UpdateCommand
-//{
-//    get
-//    {
-//        if (mUpdater == null)
-//            mUpdater = new Updater();
-//        return mUpdater;
-//    }
-//    set
-//    {
-//        mUpdater = value;
-//    }
-//}
-
-//private class Updater : ICommand
-//{
-//    #region ICommand Members  
-
-//    public bool CanExecute(object parameter)
-//    {
-//        return true;
-//    }
-
-//    public event EventHandler CanExecuteChanged;
-
-//    public void Execute(object parameter)
-//    {
-
-//    }
-
-//    #endregion
-//}
 
 

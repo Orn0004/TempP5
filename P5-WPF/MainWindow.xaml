@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:P5_WPF"
+        xmlns:local="clr-namespace:P5_WPF" xmlns:local1="clr-namespace:P5_WPF.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
@@ -12,38 +12,41 @@
         <local:BatchesVm />
     </Window.DataContext>
     <Grid>
-        <ListView ItemsSource="{Binding AlleBatches}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <ListView ItemsSource="{Binding allBatches}" x:Name="batcheslist" MouseDoubleClick="batchesList_MouseDoubleClick" Margin="166,90,57,73" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="BatchID" Width="100"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Temperatur_Celsius}" Header="Seneste Temperaturmåling" Width="100"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Luftfugtighed_Procent}" Header="Seneste Luftfugtighedsmåling" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="BatchID" Width="70"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Temperatur_Celsius}" Header="Seneste Temperaturmåling" Width="160"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Luftfugtighed_Procent}" Header="Seneste Luftfugtighedsmåling" Width="170"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Tidspunkt}" Header="Tidspunkt" Width="150"/>
                 </GridView>
             </ListView.View>
         </ListView>
+
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Height="28" Margin="166,55,279,336" Width="131" x:Name="aktivebatches" Text="Aktive Batches" />
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Height="40" Margin="287,10,34,369" Width="255" x:Name="headtext" Text="Novefa observeringssystem"/>
+        <Button Click="Batch_Click" HorizontalAlignment="Center"  FontWeight="Bold" Margin="27,361,403,13" Width="146"  Name="tables_button">
+            <WrapPanel>
+                <TextBlock>Tilføj Batch</TextBlock>
+            </WrapPanel>
+        </Button>
+        <Button Click="BatchInfo" HorizontalAlignment="Center"  Background="CadetBlue" Foreground="PaleGreen" FontSize="20" FontWeight="Bold" Margin="558,357,21,17" Width="213" Name="test_button" Grid.ColumnSpan="2">
+            <WrapPanel>
+                <TextBlock><Run Text="TEST"/></TextBlock>
+            </WrapPanel>
+        </Button>
+        <Button HorizontalAlignment="Center" Visibility="Hidden" Background="CadetBlue" Foreground="Orange" FontSize="20" FontWeight="Bold" Margin="27,343,336.347,31" Width="213" Click="back_button_Click" Name="back_button">
+            <WrapPanel>
+                <TextBlock><Run Text="TEST"/></TextBlock>
+            </WrapPanel>
+        </Button>
+
+
     </Grid>
-    
-    <!--<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Height="40" Margin="321,10,308,369" Grid.ColumnSpan="2" Width="163" Name="welcome_text">
-             Novefa Temp
-    </TextBlock>
-    <Button Click="Batch_Click" HorizontalAlignment="Center"  FontWeight="Bold" Margin="338,134,308,240" Width="146" Grid.ColumnSpan="2"  Name="tables_button">
-        <WrapPanel>
-            <TextBlock>Tilføj Batch</TextBlock>
-        </WrapPanel>
-    </Button>
-    <Button Click="BatchInfo" HorizontalAlignment="Center"  Background="CadetBlue" Foreground="PaleGreen" FontSize="20" FontWeight="Bold" Margin="549,352,30,22" Width="213" Name="test_button">
-        <WrapPanel>
-            <TextBlock><Run Text="TEST"/></TextBlock>
-        </WrapPanel>
-    </Button>
-    <Button HorizontalAlignment="Center" Visibility="Hidden" Background="CadetBlue" Foreground="Orange" FontSize="20" FontWeight="Bold" Margin="23,343,548,31" Width="213" Click="back_button_Click" Name="back_button">
-        <WrapPanel>
-            <TextBlock><Run Text="TEST"/></TextBlock>
-        </WrapPanel>
-    </Button>-->
-
-
-
 
 
 </Window>
