@@ -7,9 +7,6 @@
         mc:Ignorable="d"
         Title="{Binding Path=myTitle}">
 
-    <Window.DataContext>
-        <local1:SingleBatchVm />
-    </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="8*"/>

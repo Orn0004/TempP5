@@ -15,9 +15,9 @@ namespace P5_WPF.ViewModels
     {
         public DataView singleBatch { get; private set; }
         public string myTitle { get; private set; }
-        public SingleBatchVm()
+        public SingleBatchVm(int id)
         {
-            myTitle = "Batch no. ";
+            myTitle = "Batch no." + id;
 
             //var CS = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
             //DataTable dt = new DataTable();

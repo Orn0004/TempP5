@@ -1,4 +1,5 @@
-﻿using System;
+﻿using P5_WPF.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,11 +20,13 @@ namespace P5_WPF
     /// </summary>
     public partial class SingleBatch_Window : Window
     {
-        
-        public SingleBatch_Window()
+        public SingleBatch_Window(int id)
         {
             InitializeComponent();
+            DataContext = new SingleBatchVm(id);
+
 
         }
+
     }
 }

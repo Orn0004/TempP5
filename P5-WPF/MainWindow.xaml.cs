@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -16,6 +17,9 @@ using System.Configuration;
 using MySql.Data.MySqlClient;
 using System.Data;
 using P5_WPF.ViewModels;
+using System.Collections;
+using System.Data.SqlClient;
+using System.Xml;
 
 namespace P5_WPF
 {
@@ -24,12 +28,11 @@ namespace P5_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
-
         public MainWindow()
         {
 
             InitializeComponent();
-
+            DataContext = new BatchesVm();
         }
         private void Batch_Click(object sender, RoutedEventArgs e)
         {
@@ -37,7 +40,6 @@ namespace P5_WPF
             BatchAdd batchAdd = new BatchAdd();
             batchAdd.Show();
         }
-
         private void BatchInfo(object sender, RoutedEventArgs e)
         {
 
@@ -52,9 +54,34 @@ namespace P5_WPF
         }
         private void batchesList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            SingleBatch_Window single = new SingleBatch_Window();
-            single.Show();
+            try
+            {
+                //get index of the selected row.
+                int itemindex = batcheslist.Items.IndexOf(batcheslist.SelectedItems[0]);
+                BatchesVm a = new BatchesVm();
+                //get id of selected row.
+                int batchId = a.allBatchIds[itemindex];
+
+                SingleBatch_Window single = new SingleBatch_Window(batchId);
+                single.Show();
+            }
+
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show("Venligst vælg en Batch.");
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+
+
+            //for (int i = 0; i < batcheslist.Items[0].SubItems.Count; i++)
+            //{
+            //    string s = batcheslist.Items[0].SubItems[i].Text;
+            //}
+
+            
         }
+      
     }
 
 }
