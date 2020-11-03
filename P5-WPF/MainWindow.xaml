@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P5_WPF" xmlns:local1="clr-namespace:P5_WPF.ViewModels" xmlns:d3="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Novefa Observeringssystem" Height="450" Width="800">
 
 
     <Grid>

@@ -36,7 +36,7 @@ namespace P5_WPF
                 //Dataview of the selected sql table from query
                 allBatches = dt.DefaultView;
 
-                //converting DataView allBatches to a generic list.
+                //converting DataView allBatches BatchID's to a generic list.
                 allBatchIds = allBatches.ToTable().Rows.OfType<DataRow>()
                     .Select(dr => dr.Field<int>("BatchID")).ToList();
             }

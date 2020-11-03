@@ -14,6 +14,9 @@ namespace P5_WPF.ViewModels
     public class SingleBatchVm
     {
         public DataView singleBatch { get; private set; }
+        public List<float> temperaturerlist { get; private set; }
+        public List<double> tidspunktlist { get; private set; }
+        public List<float> luftfugtighedlist { get; private set; }
         public string myTitle { get; private set; }
         public SingleBatchVm(int id)
         {
@@ -31,6 +34,24 @@ namespace P5_WPF.ViewModels
                     adapter.Fill(dt);
                 }
                 singleBatch = dt.DefaultView;
+                
+                temperaturerlist = singleBatch.ToTable().Rows.OfType<DataRow>()
+                    .Select(dr => dr.Field<float>("Temperatur_Celsius")).ToList();
+
+                luftfugtighedlist = singleBatch.ToTable().Rows.OfType<DataRow>()
+                   .Select(dr => dr.Field<float>("Luftfugtighed_Procent")).ToList();
+
+                List<DateTime> _tidspunktlist = singleBatch.ToTable().Rows.OfType<DataRow>()
+                    .Select(dr => dr.Field<DateTime>("Tidspunkt")).ToList();
+
+                List<double> __tidspunktlist = new List<double>();
+
+                foreach (DateTime item in _tidspunktlist)
+                {
+                    double converteditem = item.ToOADate();
+                    __tidspunktlist.Add(converteditem);
+                }
+                tidspunktlist = __tidspunktlist;
             }
 
             catch (Exception ex)

@@ -5,16 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P5_WPF" xmlns:local1="clr-namespace:P5_WPF.ViewModels" xmlns:d3="clr-namespace:InteractiveDataDisplay.WPF;assembly=InteractiveDataDisplay.WPF"
         mc:Ignorable="d"
-        Title="{Binding Path=myTitle}" Height="702.7" Width="1036">
+        Title="{Binding Path=myTitle}" Height="759.7" Width="1130">
 
     <Grid>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="466*"/>
-            <ColumnDefinition Width="87*"/>
-            <ColumnDefinition Width="207*"/>
+            <ColumnDefinition Width="52*"/>
+            <ColumnDefinition Width="263*"/>
+            <ColumnDefinition Width="59*"/>
+            <ColumnDefinition Width="140*"/>
         </Grid.ColumnDefinitions>
-        <ListView ItemsSource="{Binding singleBatch}" x:Name="batchinfo" Margin="10,131,52,122">
+        <ListView ItemsSource="{Binding singleBatch}" x:Name="batchinfo" Margin="62,66,94,67" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="BatchID" Width="70"/>
@@ -24,9 +25,12 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Canvas Grid.ColumnSpan="2">
-            <d3:Chart BottomTitle="Argument" LeftTitle="Function" Height="283" Width="438" Canvas.Left="586" Canvas.Top="181">
-                <d3:LineGraph x:Name="linegraph" Description="Simple linegraph" Stroke="Blue" StrokeThickness="3"/>
+        <Canvas Grid.ColumnSpan="3">
+            <d3:Chart BottomTitle="Tid" LeftTitle="Temperatur" Height="273" Width="463" Canvas.Left="615" Canvas.Top="378">
+                <d3:LineGraph x:Name="linegraphtemp" Description="Linjegraf af temperaturen over tid" Stroke="DarkRed" StrokeThickness="3"/>
+            </d3:Chart>
+            <d3:Chart BottomTitle="Tid" LeftTitle="Luftfugtigheden" Height="267" Width="463" Canvas.Left="615" Canvas.Top="71">
+                <d3:LineGraph x:Name="linegraphhum" Description="Linjegraf af luftfugtigheden over tid" Stroke="Blue" StrokeThickness="3"/>
             </d3:Chart>
         </Canvas>
     </Grid>

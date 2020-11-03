@@ -26,11 +26,14 @@ namespace P5_WPF
             InitializeComponent();
             DataContext = new SingleBatchVm(id);
 
-            var x = Enumerable.Range(0, 1001).Select(i => i / 10.0).ToArray();
-            var y = x.Select(v => Math.Abs(v) < 1e-10 ? 1 : Math.Sin(v) / v).ToArray();
+            SingleBatchVm a = new SingleBatchVm(id);
 
-            linegraph.Plot(x, y); // x and y are IEnumerable<double>
+            var y1 = a.temperaturerlist;
+            var y2 = a.luftfugtighedlist;
+            var x = a.tidspunktlist;
 
+            linegraphtemp.Plot(x, y1);
+            linegraphhum.Plot(x, y2);
         }
 
     }
