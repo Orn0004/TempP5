@@ -34,11 +34,9 @@ namespace P5_WPF
             InitializeComponent();
             DataContext = new BatchesVm();
         }
-        private void Batch_Click(object sender, RoutedEventArgs e)
+        private void RefreshTable(object sender, RoutedEventArgs e)
         {
-
-            BatchAdd batchAdd = new BatchAdd();
-            batchAdd.Show();
+            DataContext = new BatchesVm();
         }
         private void BatchInfo(object sender, RoutedEventArgs e)
         {
