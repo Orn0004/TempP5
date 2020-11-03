@@ -19,25 +19,25 @@ namespace P5_WPF.ViewModels
         {
             myTitle = "Batch no." + id;
 
-            //var CS = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
-            //DataTable dt = new DataTable();
-            //try
-            //{
-            //    using (MySqlConnection connection = new MySqlConnection(CS))
-            //    {
-            //        string CmdString = "SELECT * FROM aktivetemperaturer WHERE BatchID = ";
-            //        MySqlDataAdapter adapter = new MySqlDataAdapter();
-            //        adapter.SelectCommand = new MySqlCommand(CmdString, connection);
-            //        adapter.Fill(dt);
-            //    }
-            //    singleBatch = dt.DefaultView;
-            //}
+            var CS = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            DataTable dt = new DataTable();
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(CS))
+                {
+                    string CmdString = "SELECT * FROM aktivemaalinger WHERE BatchID = " + id;
+                    MySqlDataAdapter adapter = new MySqlDataAdapter();
+                    adapter.SelectCommand = new MySqlCommand(CmdString, connection);
+                    adapter.Fill(dt);
+                }
+                singleBatch = dt.DefaultView;
+            }
 
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Cannot establish connection");
-            //    MessageBox.Show(ex.Message);
-            //}
+            catch (Exception ex)
+            {
+                MessageBox.Show("Cannot establish connection");
+                MessageBox.Show(ex.Message);
+            }
 
         }
     }
