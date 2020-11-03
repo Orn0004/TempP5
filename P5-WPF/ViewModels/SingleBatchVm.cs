@@ -35,6 +35,7 @@ namespace P5_WPF.ViewModels
                 }
                 singleBatch = dt.DefaultView;
                 
+                //putting respective rows into generic lists in order to use for linegraph.
                 temperaturerlist = singleBatch.ToTable().Rows.OfType<DataRow>()
                     .Select(dr => dr.Field<float>("Temperatur_Celsius")).ToList();
 
@@ -44,6 +45,7 @@ namespace P5_WPF.ViewModels
                 List<DateTime> _tidspunktlist = singleBatch.ToTable().Rows.OfType<DataRow>()
                     .Select(dr => dr.Field<DateTime>("Tidspunkt")).ToList();
 
+                //converting DateTime generic list to a double list for OLE Automation date.
                 List<double> __tidspunktlist = new List<double>();
 
                 foreach (DateTime item in _tidspunktlist)

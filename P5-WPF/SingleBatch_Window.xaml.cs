@@ -28,10 +28,12 @@ namespace P5_WPF
 
             SingleBatchVm a = new SingleBatchVm(id);
 
+            //assigning x and y axis for graphs with data from the batch
             var y1 = a.temperaturerlist;
             var y2 = a.luftfugtighedlist;
             var x = a.tidspunktlist;
 
+            //drawing linegraph with the data
             linegraphtemp.Plot(x, y1);
             linegraphhum.Plot(x, y2);
         }
