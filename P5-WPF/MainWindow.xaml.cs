@@ -70,16 +70,7 @@ namespace P5_WPF
             {
                 System.Windows.Forms.MessageBox.Show("Venligst vælg en Batch.");
                 System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
-
-
-
-            //for (int i = 0; i < batcheslist.Items[0].SubItems.Count; i++)
-            //{
-            //    string s = batcheslist.Items[0].SubItems[i].Text;
-            //}
-
-            
+            }    
         }
       
     }

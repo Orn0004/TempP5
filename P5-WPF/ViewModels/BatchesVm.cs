@@ -39,32 +39,13 @@ namespace P5_WPF
                 //converting DataView allBatches to a generic list.
                 allBatchIds = allBatches.ToTable().Rows.OfType<DataRow>()
                     .Select(dr => dr.Field<int>("BatchID")).ToList();
-
             }
-
             catch (Exception ex)
             {
                 System.Windows.Forms.MessageBox.Show("Cannot establish connection");
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
-
-
         }
-        //public CollectionView BatchesView { get; }
-
-        //private string _filterText = "";
-        //public string FilterText
-        //{
-        //    get => _filterText;
-        //    set
-        //    {
-        //        if (SetValue(ref _filterText, value))
-        //        {
-        //            allBatches.Items.Refresh();
-        //        }
-        //    }
-        //}
-
 
     }
 }
