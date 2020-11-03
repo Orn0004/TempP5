@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Reactive.Linq;
 
 namespace P5_WPF
 {
@@ -25,6 +26,10 @@ namespace P5_WPF
             InitializeComponent();
             DataContext = new SingleBatchVm(id);
 
+            var x = Enumerable.Range(0, 1001).Select(i => i / 10.0).ToArray();
+            var y = x.Select(v => Math.Abs(v) < 1e-10 ? 1 : Math.Sin(v) / v).ToArray();
+
+            linegraph.Plot(x, y); // x and y are IEnumerable<double>
 
         }
 

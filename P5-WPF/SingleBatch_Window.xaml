@@ -3,26 +3,32 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:P5_WPF" xmlns:local1="clr-namespace:P5_WPF.ViewModels"
+        xmlns:local="clr-namespace:P5_WPF" xmlns:local1="clr-namespace:P5_WPF.ViewModels" xmlns:d3="clr-namespace:InteractiveDataDisplay.WPF;assembly=InteractiveDataDisplay.WPF"
         mc:Ignorable="d"
-        Title="{Binding Path=myTitle}">
+        Title="{Binding Path=myTitle}" Height="702.7" Width="1036">
 
     <Grid>
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="8*"/>
-            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="466*"/>
+            <ColumnDefinition Width="87*"/>
+            <ColumnDefinition Width="207*"/>
         </Grid.ColumnDefinitions>
-        <!--<ListView ItemsSource="{Binding singleBatch}" x:Name="batchinfo" MouseDoubleClick="batchesList_MouseDoubleClick" Margin="166,90,57,73" Grid.ColumnSpan="2">
+        <ListView ItemsSource="{Binding singleBatch}" x:Name="batchinfo" Margin="10,131,52,122">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="BatchID" Width="70"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Temperatur_Celsius}" Header="Seneste Temperaturmåling" Width="160"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Luftfugtighed_Procent}" Header="Seneste Luftfugtighedsmåling" Width="170"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Temperatur_Celsius}" Header="Temperaturmålinger (i Celsius)" Width="170"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Luftfugtighed_Procent}" Header="Luftfugtighedsmålinger (i %)" Width="170"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Tidspunkt}" Header="Tidspunkt" Width="150"/>
                 </GridView>
             </ListView.View>
-        </ListView>-->
-
+        </ListView>
+        <Canvas Grid.ColumnSpan="2">
+            <d3:Chart BottomTitle="Argument" LeftTitle="Function" Height="283" Width="438" Canvas.Left="586" Canvas.Top="181">
+                <d3:LineGraph x:Name="linegraph" Description="Simple linegraph" Stroke="Blue" StrokeThickness="3"/>
+            </d3:Chart>
+        </Canvas>
     </Grid>
 
 </Window>
