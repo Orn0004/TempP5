@@ -38,18 +38,18 @@ namespace P5_WPF
         {
             DataContext = new BatchesVm();
         }
-        private void BatchInfo(object sender, RoutedEventArgs e)
-        {
+        //private void BatchInfo(object sender, RoutedEventArgs e)
+        //{
 
-            test_button.Visibility = aktivebatches.Visibility = tables_button.Visibility = Visibility.Hidden;
-            back_button.Visibility = Visibility.Visible;
-        }
+        //    test_button.Visibility = aktivebatches.Visibility = tables_button.Visibility = Visibility.Hidden;
+        //    back_button.Visibility = Visibility.Visible;
+        //}
 
-        private void back_button_Click(object sender, RoutedEventArgs e)
-        {
-            test_button.Visibility = aktivebatches.Visibility = tables_button.Visibility = Visibility.Visible;
-            back_button.Visibility = Visibility.Hidden;
-        }
+        //private void back_button_Click(object sender, RoutedEventArgs e)
+        //{
+        //    test_button.Visibility = aktivebatches.Visibility = tables_button.Visibility = Visibility.Visible;
+        //    back_button.Visibility = Visibility.Hidden;
+        //}
         private void batchesList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             try

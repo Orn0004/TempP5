@@ -28,33 +28,31 @@
         <Label
             Grid.Row="0"
             Grid.Column="0"
-            Margin="94,60,442,330">
+            Margin="0,66,438,306" HorizontalAlignment="Right" Width="40">
             Filter:
         </Label>
         <TextBox
-            Grid.Row="0"
-            Margin="139,60,135,336"
+            Margin="138,69,153,324"
             VerticalAlignment="Center"
-            Text="{Binding Path=FilterText, UpdateSourceTrigger=PropertyChanged}" Height="23" Grid.ColumnSpan="2" />
+            Text="{Binding Path=FilterText, UpdateSourceTrigger=PropertyChanged}" Height="26" Grid.ColumnSpan="2" />
 
-
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Height="28" Margin="27,10,418,381" Width="131" x:Name="aktivebatches" Text="Aktive Batches" />
+        <TextBlock VerticalAlignment="Center" FontSize="20" Height="35" Margin="27,26,278,358" x:Name="aktivebatches" Text="Aktive Batches for hylde no. 2" />
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Height="40" Margin="258,0,63,379" Width="255" x:Name="headtext" Text="Novefa observeringssystem"/>
         <Button Click="RefreshTable" HorizontalAlignment="Center"  FontWeight="Bold" Margin="27,361,403,13" Width="146"  Name="tables_button">
             <WrapPanel>
                 <TextBlock>Genindlæs tabel</TextBlock>
             </WrapPanel>
         </Button>
-        <Button Click="BatchInfo" HorizontalAlignment="Center"  Background="CadetBlue" Foreground="PaleGreen" FontSize="20" FontWeight="Bold" Margin="558,357,21,17" Width="213" Name="test_button" Grid.ColumnSpan="2">
+        <!--<Button Click="BatchInfo" HorizontalAlignment="Center"  Background="CadetBlue" Foreground="PaleGreen" FontSize="20" FontWeight="Bold" Margin="558,357,21,17" Width="213" Name="test_button" Grid.ColumnSpan="2">
+            <WrapPanel>
+                <TextBlock><Run Text="Næste hyldeposition"/></TextBlock>
+            </WrapPanel>
+        </Button>-->
+        <!--<Button HorizontalAlignment="Center" Visibility="Hidden" Background="CadetBlue" Foreground="Orange" FontSize="20" FontWeight="Bold" Margin="27,343,336.347,31" Width="213" Click="back_button_Click" Name="back_button">
             <WrapPanel>
                 <TextBlock><Run Text="TEST"/></TextBlock>
             </WrapPanel>
-        </Button>
-        <Button HorizontalAlignment="Center" Visibility="Hidden" Background="CadetBlue" Foreground="Orange" FontSize="20" FontWeight="Bold" Margin="27,343,336.347,31" Width="213" Click="back_button_Click" Name="back_button">
-            <WrapPanel>
-                <TextBlock><Run Text="TEST"/></TextBlock>
-            </WrapPanel>
-        </Button>
+        </Button>-->
 
 
     </Grid>
