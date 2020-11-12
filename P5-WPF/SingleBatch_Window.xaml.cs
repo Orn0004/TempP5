@@ -33,6 +33,7 @@ namespace P5_WPF
             var y2 = a.luftfugtighedlist;
             var x = a.tidspunktlist;
 
+
             //drawing linegraph with the data
             linegraphtemp.Plot(x, y1);
             linegraphhum.Plot(x, y2);

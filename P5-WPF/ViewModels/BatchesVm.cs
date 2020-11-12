@@ -20,8 +20,10 @@ namespace P5_WPF
     {
         public DataView allBatches { get; private set; }
         public List<int> allBatchIds { get; private set; }
+        public string myTitle { get; private set; }
         public BatchesVm()
         {
+            myTitle = "Novefa RoomMonitor";
             var CS = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
             DataTable dt = new DataTable();
             try

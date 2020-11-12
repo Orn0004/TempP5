@@ -20,6 +20,7 @@ using P5_WPF.ViewModels;
 using System.Collections;
 using System.Data.SqlClient;
 using System.Xml;
+using System.Threading;
 
 namespace P5_WPF
 {
@@ -33,6 +34,7 @@ namespace P5_WPF
 
             InitializeComponent();
             DataContext = new BatchesVm();
+
         }
         private void RefreshTable(object sender, RoutedEventArgs e)
         {
@@ -68,9 +70,9 @@ namespace P5_WPF
             {
                 System.Windows.Forms.MessageBox.Show("Venligst vælg en Batch.");
                 System.Windows.Forms.MessageBox.Show(ex.Message);
-            }    
+            }
         }
-      
+
     }
 
 }

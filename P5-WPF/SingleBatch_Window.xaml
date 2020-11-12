@@ -15,24 +15,26 @@
             <ColumnDefinition Width="59*"/>
             <ColumnDefinition Width="140*"/>
         </Grid.ColumnDefinitions>
-        <ListView ItemsSource="{Binding singleBatch}" x:Name="batchinfo" Margin="62,66,94,67" Grid.ColumnSpan="2">
+        <ListView ItemsSource="{Binding singleBatch}" x:Name="batchinfo" Margin="62,66,161.51,67" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="BatchID" Width="70"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Temperatur_Celsius}" Header="Temperaturmålinger (i Celsius)" Width="170"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Luftfugtighed_Procent}" Header="Luftfugtighedsmålinger (i %)" Width="170"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Tidspunkt}" Header="Tidspunkt" Width="150"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="Batch ID" Width="60"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Temperatur_Celsius}" Header="Temperature (in Celsius)" Width="160"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Luftfugtighed_Procent}" Header="Humidity (in %)" Width="90"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Tidspunkt}" Header="Date meassured" Width="150"/>
                 </GridView>
             </ListView.View>
         </ListView>
         <Canvas Grid.ColumnSpan="3">
-            <d3:Chart BottomTitle="Tid" LeftTitle="Temperatur" Height="273" Width="463" Canvas.Left="615" Canvas.Top="378">
-                <d3:LineGraph x:Name="linegraphtemp" Description="Linjegraf af temperaturen over tid" Stroke="DarkRed" StrokeThickness="3"/>
+            <d3:Chart BottomTitle="Date" LeftTitle="Temperature" Height="287" Width="513" Canvas.Left="565" Canvas.Top="378">
+                <d3:LineGraph x:Name="linegraphtemp" Description="Linjegraph of temperature over time" Stroke="DarkRed" StrokeThickness="3"/>
             </d3:Chart>
-            <d3:Chart BottomTitle="Tid" LeftTitle="Luftfugtigheden" Height="267" Width="463" Canvas.Left="615" Canvas.Top="71">
-                <d3:LineGraph x:Name="linegraphhum" Description="Linjegraf af luftfugtigheden over tid" Stroke="Blue" StrokeThickness="3"/>
+            <d3:Chart BottomTitle="Date" LeftTitle="Humidity" Height="285" Width="513" Canvas.Left="565" Canvas.Top="71">
+                <d3:LineGraph x:Name="linegraphhum" Description="Linegraph of humidity over time" Stroke="Blue" StrokeThickness="3"/>
             </d3:Chart>
         </Canvas>
+        <TextBlock VerticalAlignment="Center" FontSize="25" Height="67" Margin="88,10,142,652" x:Name="batchno" Text="{Binding Path=myTitle}" Grid.ColumnSpan="2" />
+
     </Grid>
 
 </Window>
