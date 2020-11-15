@@ -20,6 +20,7 @@ using P5_WPF.ViewModels;
 using System.Collections;
 using System.Data.SqlClient;
 using System.Xml;
+using System.Windows.Threading;
 
 namespace P5_WPF
 {
@@ -28,11 +29,22 @@ namespace P5_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        DispatcherTimer t;
+        DateTime start;
+
         public MainWindow()
         {
-
             InitializeComponent();
             DataContext = new BatchesVm();
+
+            t = new DispatcherTimer(new TimeSpan(0, 0, 0, 0, 50), DispatcherPriority.Render,
+            t_Tick, Dispatcher.CurrentDispatcher); t.IsEnabled = true;
+            start = DateTime.Now;
+        }
+        private void t_Tick(object sender, EventArgs e)
+        {
+            TimerDisplay.Text = Convert.ToString(DateTime.Now - start);   
+            CommandManager.InvalidateRequerySuggested();
         }
         private void RefreshTable(object sender, RoutedEventArgs e)
         {
@@ -70,6 +82,7 @@ namespace P5_WPF
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }    
         }
+
       
     }
 
