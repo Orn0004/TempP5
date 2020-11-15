@@ -31,24 +31,45 @@ namespace P5_WPF
     {
         DispatcherTimer t;
         DateTime start;
-
+        int counter;
+        int countAmount = 300;
         public MainWindow()
         {
             InitializeComponent();
             DataContext = new BatchesVm();
 
-            t = new DispatcherTimer(new TimeSpan(0, 0, 0, 0, 50), DispatcherPriority.Render,
+
+            var startTimeSpan = TimeSpan.Zero;
+            var periodTimeSpan = TimeSpan.FromMinutes(5);
+
+            t = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Render,
             t_Tick, Dispatcher.CurrentDispatcher); t.IsEnabled = true;
+
+
+
+
             start = DateTime.Now;
         }
         private void t_Tick(object sender, EventArgs e)
         {
             TimerDisplay.Text = Convert.ToString(DateTime.Now - start);   
             CommandManager.InvalidateRequerySuggested();
+            counter--;
+            if (counter == 0)
+            {
+                DataContext = new BatchesVm();
+                counter = countAmount;
+                start = DateTime.Now;
+            }
         }
+
+        
+
         private void RefreshTable(object sender, RoutedEventArgs e)
         {
             DataContext = new BatchesVm();
+            start = DateTime.Now;
+            counter = countAmount;
         }
         //private void BatchInfo(object sender, RoutedEventArgs e)
         //{
