@@ -20,7 +20,7 @@ using P5_WPF.ViewModels;
 using System.Collections;
 using System.Data.SqlClient;
 using System.Xml;
-using System.Threading;
+using System.Windows.Threading;
 
 namespace P5_WPF
 {
@@ -29,16 +29,45 @@ namespace P5_WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        DispatcherTimer t;
+        DateTime start;
+        int counter;
+        int countAmount = 300;
         public MainWindow()
         {
-
             InitializeComponent();
             DataContext = new BatchesVm();
 
+
+            var startTimeSpan = TimeSpan.Zero;
+            var periodTimeSpan = TimeSpan.FromMinutes(5);
+            start = DateTime.Now;
+
+            t = new DispatcherTimer(new TimeSpan(1), DispatcherPriority.Render,
+            t_Tick, Dispatcher.CurrentDispatcher); t.IsEnabled = true;
+
+
         }
+        private void t_Tick(object sender, EventArgs e)
+        {
+            TimerDisplay.Text = start.ToString("dd MMMM yyyy hh:mm:ss tt");   
+            CommandManager.InvalidateRequerySuggested();
+            counter--;
+            if (counter == 0)
+            {
+                DataContext = new BatchesVm();
+                counter = countAmount;
+                start = DateTime.Now;
+            }
+        }
+
+        
+
         private void RefreshTable(object sender, RoutedEventArgs e)
         {
             DataContext = new BatchesVm();
+            start = DateTime.Now;
+            counter = countAmount;
         }
         //private void BatchInfo(object sender, RoutedEventArgs e)
         //{
@@ -70,9 +99,10 @@ namespace P5_WPF
             {
                 System.Windows.Forms.MessageBox.Show("Venligst vælg en Batch.");
                 System.Windows.Forms.MessageBox.Show(ex.Message);
-            }
+            }    
         }
 
+      
     }
 
 }
