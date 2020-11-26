@@ -17,11 +17,14 @@ namespace P5_WPF.ViewModels
         public List<float> temperaturerlist { get; private set; }
         public List<double> tidspunktlist { get; private set; }
         public List<float> luftfugtighedlist { get; private set; }
+        public bool humiditywithinRange { get; private set; }
+        public bool temperaturewithinRange { get; private set; }
         public string myTitle { get; private set; }
         public SingleBatchVm(int id)
         {
             myTitle = "Batch no." + id;
-
+            temperaturewithinRange = true;
+            humiditywithinRange = true;
             var CS = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
             DataTable dt = new DataTable();
             try
@@ -34,13 +37,29 @@ namespace P5_WPF.ViewModels
                     adapter.Fill(dt);
                 }
                 singleBatch = dt.DefaultView;
-                
+
                 //putting respective rows into generic lists in order to use for linegraph.
                 temperaturerlist = singleBatch.ToTable().Rows.OfType<DataRow>()
                     .Select(dr => dr.Field<float>("Temperatur_Celsius")).ToList();
 
                 luftfugtighedlist = singleBatch.ToTable().Rows.OfType<DataRow>()
                    .Select(dr => dr.Field<float>("Luftfugtighed_Procent")).ToList();
+
+                foreach (float item in (temperaturerlist.Count > 12 ? temperaturerlist.Skip(temperaturerlist.Count - 12) : temperaturerlist))
+                {
+                    if (item >= 18 && item <= 24)
+                    {
+                        temperaturewithinRange = false;
+                    }
+                }
+
+                foreach (float item in (luftfugtighedlist.Count > 12 ? luftfugtighedlist.Skip(luftfugtighedlist.Count - 12) : luftfugtighedlist))
+                {
+                    if (item >= 40 && item <= 70)
+                    {
+                        humiditywithinRange = false;
+                    }
+                }
 
                 List<DateTime> _tidspunktlist = singleBatch.ToTable().Rows.OfType<DataRow>()
                     .Select(dr => dr.Field<DateTime>("Tidspunkt")).ToList();
