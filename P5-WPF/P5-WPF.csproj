@@ -90,6 +90,7 @@
     </ApplicationDefinition>
     <Compile Include="Models\BatchesModel.cs" />
     <Compile Include="Models\BatchIDModel.cs" />
+    <Compile Include="Models\BatchModel.cs" />
     <Compile Include="SingleBatch_Window.xaml.cs">
       <DependentUpon>SingleBatch_Window.xaml</DependentUpon>
     </Compile>
