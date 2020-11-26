@@ -43,8 +43,8 @@
                 <TextBlock>Refresh table</TextBlock>
             </WrapPanel>
         </Button>
-        <Label Margin="427,375,10,33">Time since last refresh :</Label>
-        <TextBlock x:Name="TimerDisplay" Margin="560,377,32,24" Grid.ColumnSpan="2"></TextBlock>
+        <Label Margin="427,377,10,31">Time of last refresh :</Label>
+        <TextBlock x:Name="TimerDisplay" Margin="543,382,49,33" Grid.ColumnSpan="2"></TextBlock>
         <!--<Button Click="BatchInfo" HorizontalAlignment="Center"  Background="CadetBlue" Foreground="PaleGreen" FontSize="20" FontWeight="Bold" Margin="558,357,21,17" Width="213" Name="test_button" Grid.ColumnSpan="2">
             <WrapPanel>
                 <TextBlock><Run Text="Næste hyldeposition"/></TextBlock>

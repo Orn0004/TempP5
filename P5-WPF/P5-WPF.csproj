@@ -100,7 +100,6 @@
     </Compile>
     <Compile Include="ViewModels\MainWindowVm.cs" />
     <Compile Include="ViewModels\SingleBatchVm.cs" />
-    <Compile Include="ViewModels\WarningBatchVm.cs" />
     <Page Include="BatchAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
