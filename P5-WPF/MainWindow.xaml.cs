@@ -41,18 +41,16 @@ namespace P5_WPF
 
             var startTimeSpan = TimeSpan.Zero;
             var periodTimeSpan = TimeSpan.FromMinutes(5);
+            start = DateTime.Now;
 
-            t = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Render,
+            t = new DispatcherTimer(new TimeSpan(1), DispatcherPriority.Render,
             t_Tick, Dispatcher.CurrentDispatcher); t.IsEnabled = true;
 
 
-
-
-            start = DateTime.Now;
         }
         private void t_Tick(object sender, EventArgs e)
         {
-            TimerDisplay.Text = Convert.ToString(DateTime.Now - start);   
+            TimerDisplay.Text = start.ToString("dd MMMM yyyy hh:mm:ss tt");   
             CommandManager.InvalidateRequerySuggested();
             counter--;
             if (counter == 0)
