@@ -21,6 +21,8 @@ namespace P5_WPF
     /// </summary>
     public partial class SingleBatch_Window : Window
     {
+        public bool hwr { get; set; }
+        public bool twr { get; set; }
         public SingleBatch_Window(int id)
         {
             InitializeComponent();
@@ -32,7 +34,6 @@ namespace P5_WPF
             var y1 = a.temperaturerlist;
             var y2 = a.luftfugtighedlist;
             var x = a.tidspunktlist;
-
 
             //drawing linegraph with the data
             linegraphtemp.Plot(x, y1);
