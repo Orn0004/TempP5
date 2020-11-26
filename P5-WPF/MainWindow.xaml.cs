@@ -37,17 +37,8 @@ namespace P5_WPF
         {
             InitializeComponent();
             DataContext = new BatchesVm();
-
-
-            var startTimeSpan = TimeSpan.Zero;
-            var periodTimeSpan = TimeSpan.FromMinutes(5);
-
             t = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Render,
             t_Tick, Dispatcher.CurrentDispatcher); t.IsEnabled = true;
-
-
-
-
             start = DateTime.Now;
         }
         private void t_Tick(object sender, EventArgs e)
@@ -62,8 +53,6 @@ namespace P5_WPF
                 start = DateTime.Now;
             }
         }
-
-        
 
         private void RefreshTable(object sender, RoutedEventArgs e)
         {
