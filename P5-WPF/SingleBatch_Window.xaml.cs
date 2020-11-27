@@ -21,23 +21,45 @@ namespace P5_WPF
     /// </summary>
     public partial class SingleBatch_Window : Window
     {
-        public SingleBatch_Window(int id)
+        public SingleBatch_Window(int id, bool active)
         {
             InitializeComponent();
             DataContext = new SingleBatchVm(id);
 
             SingleBatchVm a = new SingleBatchVm(id);
+            if (active == true){
+                //assigning x and y axis for graphs with data from the batch
+                var y1 = a.activeTemperatureList;
+                var y2 = a.activeHumidityList;
+                var x = a.activeDateList;
 
-            //assigning x and y axis for graphs with data from the batch
-            var y1 = a.temperaturerlist;
-            var y2 = a.luftfugtighedlist;
-            var x = a.tidspunktlist;
+                NotVisible();
+
+                //drawing linegraph with the data
+                linegraphtemp.Plot(x, y1);
+                linegraphhum.Plot(x, y2);
+            }
+            else
+            {
+                var y1 = a.archivedTemperatureList;
+                var y2 = a.archivedHumidityList;
+                var x = a.archivedDateList;
 
 
-            //drawing linegraph with the data
-            linegraphtemp.Plot(x, y1);
-            linegraphhum.Plot(x, y2);
+                //drawing linegraph with the data
+                linegraphtemp.Plot(x, y1);
+                linegraphhum.Plot(x, y2);
+            }
+
+           
         }
+        private void NotVisible()
+        {
+
+            archivedbatchinfo.Visibility = Visibility.Hidden;
+            batchinfo.Visibility = Visibility.Visible;
+        }
+
 
     }
 }

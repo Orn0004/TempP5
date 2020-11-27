@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:P5_WPF" xmlns:local1="clr-namespace:P5_WPF.ViewModels" xmlns:d3="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
         mc:Ignorable="d"
         Title="Novefa Observeringssystem" Height="450" Width="800">
-    
+
 
 
     <Grid Margin="0,0,-8,-21">
@@ -15,31 +15,38 @@
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
 
-        <ListView ItemsSource="{Binding allBatches}" x:Name="batcheslist"  Margin="72,100,59,63" Grid.ColumnSpan="2" MouseDoubleClick="batchesList_MouseDoubleClick" >
+        <ListView ItemsSource="{Binding activeBatches}" x:Name="batcheslist"  Margin="120,93,91,70" Grid.ColumnSpan="2" MouseDoubleClick="batchesList_MouseDoubleClick" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="BatchID" Width="70"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Temperatur_Celsius}" Header="Seneste Temperaturmåling" Width="160"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Luftfugtighed_Procent}" Header="Seneste Luftfugtighedsmåling" Width="170"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Tidspunkt}" Header="Tidspunkt" Width="150"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="Batch ID" Width="70"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Temperatur_Celsius}" Header="Current temperature (in Celsius)" Width="180"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Luftfugtighed_Procent}" Header="Current humidity (in %)" Width="160"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Tidspunkt}" Header="Timestamp" Width="140"/>
                 </GridView>
             </ListView.View>
         </ListView>
 
-        <Label
-            Grid.Row="0"
-            Grid.Column="0"
-            Margin="0,66,438,306" HorizontalAlignment="Right" Width="40">
-            Filter:
-        </Label>
-        <TextBox
-            Margin="138,69,153,324"
-            VerticalAlignment="Center"
-            Text="{Binding Path=FilterText, UpdateSourceTrigger=PropertyChanged}" Height="26" Grid.ColumnSpan="2" />
+        <ListView ItemsSource="{Binding archivedBatches}" x:Name="archivedbatcheslist"  Margin="120,93,91,70" Grid.ColumnSpan="2" MouseDoubleClick="archivedbatchesList_MouseDoubleClick" Visibility="Hidden" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="Batch ID" Width="70"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Temperatur_Celsius}" Header="Current temperature (in Celsius)" Width="180"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Luftfugtighed_Procent}" Header="Current humidity (in %)" Width="160"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Tidspunkt}" Header="Timestamp" Width="140"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
-        <TextBlock VerticalAlignment="Center" FontSize="20" Height="35" Margin="27,26,278,358" x:Name="aktivebatches" Text="Aktive Batches for hylde no. 2" />
-        
-        <Button Click="RefreshTable" HorizontalAlignment="Center"  FontWeight="Bold" Margin="72,377,359,26" Width="151"  Name="tables_button">
+
+        <Label FontSize="20" FontWeight="Bold" Margin="10,35,303,325" Name="activetext">
+            Batches in production
+        </Label>
+
+        <Label FontSize="20" FontWeight="Bold" Margin="10,35,303,325" Name="archivetext" Visibility="Hidden">
+            Archived Batches
+        </Label>
+
+        <Button Click="RefreshTable" HorizontalAlignment="Center"  FontWeight="Bold" Margin="72,377,359,26" Width="151"  Name="refreshTable_button">
             <WrapPanel>
                 <TextBlock>Refresh table</TextBlock>
             </WrapPanel>
@@ -47,16 +54,16 @@
         <Image Source="/Images/Novefa_Logo.PNG" Margin="266,-49,80,306" />
         <Label Margin="427,377,10,31">Time of last refresh :</Label>
         <TextBlock x:Name="TimerDisplay" Margin="543,382,49,33" Grid.ColumnSpan="2"></TextBlock>
-        <!--<Button Click="BatchInfo" HorizontalAlignment="Center"  Background="CadetBlue" Foreground="PaleGreen" FontSize="20" FontWeight="Bold" Margin="558,357,21,17" Width="213" Name="test_button" Grid.ColumnSpan="2">
+        <Button Click="NotVisible_Click" HorizontalAlignment="Center"  Background="Black" Foreground="DarkBlue" FontSize="15" FontWeight="Bold" Margin="10,24,37,380" Width="172" Name="archive_button" Grid.Column="1">
             <WrapPanel>
-                <TextBlock><Run Text="Næste hyldeposition"/></TextBlock>
+                <TextBlock><Run Text="Show archived batches"/></TextBlock>
             </WrapPanel>
-        </Button>-->
-        <!--<Button HorizontalAlignment="Center" Visibility="Hidden" Background="CadetBlue" Foreground="Orange" FontSize="20" FontWeight="Bold" Margin="27,343,336.347,31" Width="213" Click="back_button_Click" Name="back_button">
+        </Button>
+        <Button HorizontalAlignment="Center" Visibility="Hidden" Background="Black" Foreground="DarkBlue" FontSize="15" FontWeight="Bold" Margin="10,24,37,380" Width="172" Click="Visible_Click" Name="active_button" Grid.Column="1">
             <WrapPanel>
-                <TextBlock><Run Text="TEST"/></TextBlock>
+                <TextBlock><Run Text="Show active Batches"/></TextBlock>
             </WrapPanel>
-        </Button>-->
+        </Button>
 
 
     </Grid>

@@ -16,7 +16,17 @@
             <ColumnDefinition Width="53*"/>
             <ColumnDefinition Width="164*"/>
         </Grid.ColumnDefinitions>
-        <ListView ItemsSource="{Binding singleBatch}" x:Name="batchinfo" Margin="62,66,164,31" Grid.ColumnSpan="2">
+        <ListView ItemsSource="{Binding activesinglebatch}" x:Name="batchinfo" Margin="62,66,164,31" Grid.ColumnSpan="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="Batch ID" Width="60"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Temperatur_Celsius}" Header="Temperature (in Celsius)" Width="160"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Luftfugtighed_Procent}" Header="Humidity (in %)" Width="90"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Tidspunkt}" Header="Date meassured" Width="150"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView ItemsSource="{Binding archivedsinglebatch}" x:Name="archivedbatchinfo" Margin="62,66,164,31" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="Batch ID" Width="60"/>

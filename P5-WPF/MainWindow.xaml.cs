@@ -61,8 +61,6 @@ namespace P5_WPF
             counter--;
         }
 
-        
-
         private void RefreshTable(object sender, RoutedEventArgs e)
         {
             TimerDisplay.Text = start.ToString("dd MMMM yyyy hh:mm:ss tt");
@@ -70,19 +68,19 @@ namespace P5_WPF
             start = DateTime.Now;
             counter = countAmount;
         }
-        
-        //private void BatchInfo(object sender, RoutedEventArgs e)
-        //{
 
-        //    test_button.Visibility = aktivebatches.Visibility = tables_button.Visibility = Visibility.Hidden;
-        //    back_button.Visibility = Visibility.Visible;
-        //}
+        private void NotVisible_Click(object sender, RoutedEventArgs e)
+        {
 
-        //private void back_button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    test_button.Visibility = aktivebatches.Visibility = tables_button.Visibility = Visibility.Visible;
-        //    back_button.Visibility = Visibility.Hidden;
-        //}
+            archive_button.Visibility = activetext.Visibility = batcheslist.Visibility =  Visibility.Hidden;
+            active_button.Visibility = archivedbatcheslist.Visibility = archivetext.Visibility = Visibility.Visible;
+        }
+
+        private void Visible_Click(object sender, RoutedEventArgs e)
+        {
+            archive_button.Visibility = activetext.Visibility = batcheslist.Visibility = Visibility.Visible;
+            active_button.Visibility = archivedbatcheslist.Visibility = archivetext.Visibility = Visibility.Hidden;
+        }
         private void batchesList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             try
@@ -91,20 +89,39 @@ namespace P5_WPF
                 int itemindex = batcheslist.Items.IndexOf(batcheslist.SelectedItems[0]);
                 BatchesVm a = new BatchesVm();
                 //get id of selected row.
-                int batchId = a.allBatchIds[itemindex];
+                int batchId = a.activeBatchIds[itemindex];
 
-                SingleBatch_Window single = new SingleBatch_Window(batchId);
+                SingleBatch_Window single = new SingleBatch_Window(batchId, true);
                 single.Show();
             }
 
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("Venligst vælg en Batch.");
-                System.Windows.Forms.MessageBox.Show(ex.Message);
+                System.Windows.Forms.MessageBox.Show("Error: You have not chosen a Batch.");
             }    
         }
 
-      
+        private void archivedbatchesList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                //get index of the selected row.
+                int itemindex = archivedbatcheslist.Items.IndexOf(archivedbatcheslist.SelectedItems[0]);
+                BatchesVm a = new BatchesVm();
+                //get id of selected row.
+                int batchId = a.archivedBatchIds[itemindex];
+
+                SingleBatch_Window single = new SingleBatch_Window(batchId, false);
+                single.Show();
+            }
+
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show("Error: You have not chosen a Batch.");
+            }
+        }
+
+
     }
 
 }
