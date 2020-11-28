@@ -28,23 +28,24 @@ namespace P5_WPF.ViewModels
         public SingleBatchVm(int id)
         {
             myTitle = "Batch no." + id;
-            temperaturewithinRange = true;
-            humiditywithinRange = true;
             var CS = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
-            singleBatchInjection(CS, true, id);
             singleBatchInjection(CS, false, id);
+            singleBatchInjection(CS, true, id);
+            
         }
 
         private void singleBatchInjection(string CS, bool active, int id)
         {
             if (active == true)
             {
+                humiditywithinRange = true;
+                temperaturewithinRange = true;
                 DataTable dt = new DataTable();
                 try
                 {
                     using (MySqlConnection connection = new MySqlConnection(CS))
                     {
-                        string CmdString = $"SELECT * FROM aktivemaalinger WHERE BatchID = {id}";
+                        string CmdString = $"SELECT * FROM aktivemaalinger WHERE BatchID = {id} ORDER BY Tidspunkt DESC";
                         MySqlDataAdapter adapter = new MySqlDataAdapter();
                         adapter.SelectCommand = new MySqlCommand(CmdString, connection);
                         adapter.Fill(dt);
@@ -58,7 +59,9 @@ namespace P5_WPF.ViewModels
                     activeHumidityList = activesinglebatch.ToTable().Rows.OfType<DataRow>()
                        .Select(dr => dr.Field<float>("Luftfugtighed_Procent")).ToList();
 
-                    foreach (float item in (activeTemperatureList.Count > 12 ? activeTemperatureList.Skip(activeTemperatureList.Count - 12) : activeTemperatureList))
+
+                    //Does not work correctly (only checks the last item)
+                    foreach (float item in activeTemperatureList.Take(12))
                     {
                         if (item >= 18 && item <= 24)
                         {
@@ -66,9 +69,9 @@ namespace P5_WPF.ViewModels
                         }
                     }
 
-                    foreach (float item in (activeHumidityList.Count > 12 ? activeHumidityList.Skip(activeHumidityList.Count - 12) : activeHumidityList))
+                    foreach (float item in activeHumidityList.Take(12))
                     {
-                        if (item >= 40 && item <= 70)
+                        if (item <= 40 && item >= 70)
                         {
                             humiditywithinRange = false;
                         }
@@ -88,10 +91,9 @@ namespace P5_WPF.ViewModels
                     activeDateList = __tidspunktlist;
                 }
 
-                catch (Exception ex)
+                catch (Exception)
                 {
                     MessageBox.Show("Cannot establish connection");
-                    MessageBox.Show(ex.Message);
                 }
 
             }
@@ -102,7 +104,7 @@ namespace P5_WPF.ViewModels
                 {
                     using (MySqlConnection connection = new MySqlConnection(CS))
                     {
-                        string CmdString = $"SELECT * FROM arkiveretmaalinger WHERE BatchID = {id}";
+                        string CmdString = $"SELECT * FROM arkiveretmaalinger WHERE BatchID = {id} ORDER BY Tidspunkt DESC";
                         MySqlDataAdapter adapter = new MySqlDataAdapter();
                         adapter.SelectCommand = new MySqlCommand(CmdString, connection);
                         adapter.Fill(dta);
@@ -131,10 +133,9 @@ namespace P5_WPF.ViewModels
                     archivedDateList = __dateList;
                 }
 
-                catch (Exception ex)
+                catch (Exception)
                 {
                     MessageBox.Show("Cannot establish connection");
-                    MessageBox.Show(ex.Message);
                 }
 
             }

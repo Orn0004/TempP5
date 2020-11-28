@@ -52,10 +52,8 @@ namespace P5_WPF
                 activeBatchIds = activeBatches.ToTable().Rows.OfType<DataRow>()
                     .Select(dr => dr.Field<int>("BatchID")).ToList();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                System.Windows.Forms.MessageBox.Show("Cannot establish connection");
-                System.Windows.Forms.MessageBox.Show(ex.Message);
             }
         }
         private void ArchivedBatchesInjection(string CS)
@@ -77,11 +75,9 @@ namespace P5_WPF
                 archivedBatchIds = archivedBatches.ToTable().Rows.OfType<DataRow>()
                     .Select(dr => dr.Field<int>("BatchID")).ToList();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 System.Windows.Forms.MessageBox.Show("Cannot establish connection");
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-
             }
         }
     }

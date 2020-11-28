@@ -33,7 +33,7 @@ namespace P5_WPF
                 var y2 = a.activeHumidityList;
                 var x = a.activeDateList;
 
-                NotVisible();
+                Visible();
 
                 //drawing linegraph with the data
                 linegraphtemp.Plot(x, y1);
@@ -53,7 +53,7 @@ namespace P5_WPF
 
            
         }
-        private void NotVisible()
+        private void Visible()
         {
 
             archivedbatchinfo.Visibility = Visibility.Hidden;

@@ -8,15 +8,13 @@
         Title="{Binding Path=myTitle}" Height="759.7" Width="1130">
 
     <Grid>
-
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="57*"/>
             <ColumnDefinition Width="287*"/>
             <ColumnDefinition Width="53*"/>
             <ColumnDefinition Width="164*"/>
         </Grid.ColumnDefinitions>
-        <ListView ItemsSource="{Binding activesinglebatch}" x:Name="batchinfo" Margin="62,66,164,31" Grid.ColumnSpan="2">
+        <ListView ItemsSource="{Binding activesinglebatch}" x:Name="batchinfo" Margin="62,88,164,31" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="Batch ID" Width="60"/>
@@ -26,7 +24,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView ItemsSource="{Binding archivedsinglebatch}" x:Name="archivedbatchinfo" Margin="62,66,164,31" Grid.ColumnSpan="2">
+        <ListView ItemsSource="{Binding archivedsinglebatch}" x:Name="archivedbatchinfo" Margin="62,88,164,31" Grid.ColumnSpan="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="Batch ID" Width="60"/>
@@ -36,6 +34,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
+
         <Label Foreground="Red" FontWeight="Bold" FontSize="15" Grid.ColumnSpan="3" Margin="492,34,30,646" Grid.Column="1">
             <Label.Style>
                 <Style TargetType="{x:Type Label}">
@@ -58,6 +57,7 @@
                 </Style>
             </Label.Style>
         </Label>
+        <Image Source="/Images/Novefa_Logo.PNG" Margin="0,0,482,646" Grid.ColumnSpan="2" />
         <Canvas Grid.ColumnSpan="2">
             <d3:Chart BottomTitle="Date" LeftTitle="Temperature" Height="287" Width="513" Canvas.Left="565" Canvas.Top="398">
                 <d3:LineGraph x:Name="linegraphtemp" Description="Linjegraph of temperature over time" Stroke="DarkRed" StrokeThickness="3"/>
@@ -65,6 +65,7 @@
             <d3:Chart BottomTitle="Date" LeftTitle="Humidity" Height="285" Width="513" Canvas.Left="565" Canvas.Top="71">
                 <d3:LineGraph x:Name="linegraphhum" Description="Linegraph of humidity over time" Stroke="Blue" StrokeThickness="3"/>
             </d3:Chart>
+            <Label Content="{Binding myTitle}" FontSize="20" FontWeight="Bold" Background="GhostWhite" x:Name="batchNo" HorizontalAlignment="Left" Width="130" Height="35" VerticalAlignment="Bottom" Canvas.Left="218" Canvas.Top="28"/>
         </Canvas>
 
 
