@@ -31,7 +31,7 @@ namespace P5_WPF.ViewModels
             var CS = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
             singleBatchInjection(CS, false, id);
             singleBatchInjection(CS, true, id);
-            
+
         }
 
         private void singleBatchInjection(string CS, bool active, int id)
@@ -61,22 +61,30 @@ namespace P5_WPF.ViewModels
 
 
                     //Does not work correctly (only checks the last item)
-                    foreach (float item in activeTemperatureList.Take(12))
+                    while (temperaturewithinRange == true)
                     {
-                        if (item >= 18 && item <= 24)
+                        foreach (float item in activeTemperatureList.Take(12))
                         {
-                            temperaturewithinRange = false;
+                            if (item > 19 && item < 25)
+                            {
+                                temperaturewithinRange = false;
+                                break;
+                            }   
                         }
+                        break;
                     }
-
-                    foreach (float item in activeHumidityList.Take(12))
+                    while (humiditywithinRange == true )
                     {
-                        if (item <= 40 && item >= 70)
+                        foreach (float item in activeHumidityList.Take(12))
                         {
-                            humiditywithinRange = false;
+                            if (item > 39 && item < 71)
+                            {
+                                humiditywithinRange = false;
+                                break;
+                            }  
                         }
-                    }
-
+                        break;
+                     }
                     List<DateTime> _tidspunktlist = activesinglebatch.ToTable().Rows.OfType<DataRow>()
                         .Select(dr => dr.Field<DateTime>("Tidspunkt")).ToList();
 
