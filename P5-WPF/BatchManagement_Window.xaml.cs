@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using MySql.Data.MySqlClient;
 using System.Data;
 using P5_WPF.ViewModels;
+using System.Windows.Forms;
 
 namespace P5_WPF
 {
@@ -26,12 +27,72 @@ namespace P5_WPF
         public BatchManagement_Window()
         {
             InitializeComponent();
-          
+
+            string CS = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            sensorsInject(CS);
+            //SensorCB.Items.Insert(0, "-SELECT SENSOR-");
+            SensorCB.SelectedIndex = 0;
         }
-       private void Sensor_List()
+        public void sensorsInject(string CS)
         {
-            SensorsVm a = new SensorsVm();
-           
+            using (MySqlConnection conn = new MySqlConnection(CS))
+            {
+                string query = $"SELECT ID, BatchID FROM aktivesensorer";
+                MySqlCommand sqlCmd = new MySqlCommand(query, conn);
+                conn.Open();
+                MySqlDataReader sqlReader = sqlCmd.ExecuteReader();
+                Dictionary<string, string> sensordata = new Dictionary<string,string>();
+                while (sqlReader.Read())
+                {
+
+                    SensorCB.Items.Add(sqlReader["ID"].ToString());
+                    sensordata.Add(sqlReader["ID"].ToString(), sqlReader["BatchID"].ToString());
+
+                }
+
+
+
+                sqlReader.Close();
+            }
+        }
+
+        private void addToDB(object sender, RoutedEventArgs e)
+        {
+            var CS = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            using (MySqlConnection con = new MySqlConnection(CS))
+                try
+                {
+                    {
+                        MySqlCommand cmd = new MySqlCommand($"UPDATE aktivesensorer SET BatchID = (@BatchID) WHERE ID = {SensorCB.SelectedValue}", con);
+                        cmd.Parameters.AddWithValue("@BatchID", New_Batch.Text);
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.Forms.MessageBox.Show("Error: Duplicate Batch.");
+                }
+        }
+        private void findBatchID(string CS, int id)
+        {
+            using (MySqlConnection conn = new MySqlConnection(CS))
+            {
+                try
+                {
+                    string query = $"SELECT BatchID FROM aktivesensorer WHERE ID = {id}";
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
+                    conn.Open();
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                }
+                catch (Exception ex)
+                {
+                    // write exception info to log or anything else
+                    System.Windows.Forms.MessageBox.Show("Error occured!");
+                }
+            }
         }
     }
 }

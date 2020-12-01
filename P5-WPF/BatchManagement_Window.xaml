@@ -20,26 +20,19 @@
         </Grid.RowDefinitions>
         <Label>Sensor</Label>
 
-        <ComboBox  Margin="0,5,578,5" Name="SensorList" Grid.Column="1">
-            <ComboBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <Rectangle Fill="{Binding Name}" Width="16" Height="16" Margin="0,2,5,2" />
-                        <TextBlock Text="{Binding Path=SensorID}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ComboBox.ItemTemplate>
+        <ComboBox  Margin="0,5,543,5" Name="SensorCB" Grid.Column="1">
         </ComboBox>
 
 
 
-        <Label Grid.Row="1">Nuværende Batch:</Label>
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" Name="Current_Batch" />
-        <Label Grid.Row="2">Ny Batch:</Label>
+        <!--<Label Grid.Row="1">Current Batch:</Label>
+        <Label x:Name="CurrentBatch" Content="{Binding ElementName=SensorCB, Path=SelectedItem}" Grid.Column="1" Margin="20,26,602,0" Grid.RowSpan="2"/>-->
+       
+ <Label Grid.Row="2">New Batch:</Label>
         <TextBox Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" Name ="New_Batch"/>
-        <Button Grid.Row="3" Grid.Column="0">
+        <Button Click ="addToDB" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,613,0">
             <WrapPanel>
-                <TextBlock>Tilføj ny batch</TextBlock>
+                <TextBlock>Connect new batch to sensor</TextBlock>
             </WrapPanel>
         </Button>
     </Grid>
