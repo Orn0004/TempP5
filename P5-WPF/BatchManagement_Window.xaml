@@ -20,13 +20,13 @@
         </Grid.RowDefinitions>
         <Label>Sensor</Label>
         <ComboBox Grid.Column="1" Margin="0,0,0,10" Name="BatchNr" />
-        <Label Grid.Row="1">Temp:</Label>
-        <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" Name="Temp" />
-        <Label Grid.Row="2">Shelf:</Label>
-        <TextBox Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" Name ="Shelf"/>
+        <Label Grid.Row="1">Nuværende Batch:</Label>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="0,0,0,10" Name="Current_Batch" />
+        <Label Grid.Row="2">Ny Batch:</Label>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" Name ="New_Batch"/>
         <Button Grid.Row="3" Grid.Column="0">
             <WrapPanel>
-                <TextBlock>Tilføj Data til DB</TextBlock>
+                <TextBlock>Tilføj ny batch</TextBlock>
             </WrapPanel>
         </Button>
     </Grid>

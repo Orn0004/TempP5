@@ -68,6 +68,12 @@ namespace P5_WPF
             start = DateTime.Now;
             counter = countAmount;
         }
+        private void Batch_Click(object sender, RoutedEventArgs e)
+        {
+
+            BatchManagement_Window batchAdd = new BatchManagement_Window();
+            batchAdd.Show();
+        }
 
         private void NotVisible_Click(object sender, RoutedEventArgs e)
         {
@@ -120,6 +126,7 @@ namespace P5_WPF
                 System.Windows.Forms.MessageBox.Show("Error: You have not chosen a Batch.");
             }
         }
+
 
 
     }

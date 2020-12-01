@@ -46,20 +46,27 @@
             Archived Batches
         </Label>
 
-        <Button Click="RefreshTable" HorizontalAlignment="Center"  FontWeight="Bold" Margin="72,377,359,26" Width="151"  Name="refreshTable_button">
+        <Button Click="RefreshTable" HorizontalAlignment="Center"  FontWeight="Bold" Margin="256,377,175,26" Width="152"  Name="refreshTable_button">
             <WrapPanel>
                 <TextBlock>Refresh table</TextBlock>
             </WrapPanel>
         </Button>
+
+        <Button Click="Batch_Click" HorizontalAlignment="Center"  FontWeight="Bold" Margin="71,377,360,26" Width="152"  Name="Batch_click_button">
+            <WrapPanel>
+                <TextBlock>Batch mangement</TextBlock>
+            </WrapPanel>
+        </Button>
+
         <Image Source="/Images/Novefa_Logo.PNG" Margin="10,-58,374,324" />
         <Label Margin="427,377,10,31">Time of last refresh :</Label>
         <TextBlock x:Name="TimerDisplay" Margin="543,382,49,33" Grid.ColumnSpan="2"></TextBlock>
-        <Button Click="NotVisible_Click" HorizontalAlignment="Center"  Foreground="DarkBlue" FontSize="15" FontWeight="Bold" Margin="10,24,37,380" Width="172" Name="archive_button" Grid.Column="1">
+        <Button Click="NotVisible_Click" HorizontalAlignment="Center" FontWeight="Bold" Margin="10,24,37,380" Width="172" Name="archive_button" Grid.Column="1">
             <WrapPanel>
                 <TextBlock><Run Text="Show archived batches"/></TextBlock>
             </WrapPanel>
         </Button>
-        <Button HorizontalAlignment="Center" Visibility="Hidden" Foreground="DarkBlue" FontSize="15" FontWeight="Bold" Margin="10,24,37,380" Width="172" Click="Visible_Click" Name="active_button" Grid.Column="1">
+        <Button HorizontalAlignment="Center" Visibility="Hidden" FontWeight="Bold" Margin="10,24,37,380" Width="172" Click="Visible_Click" Name="active_button" Grid.Column="1">
             <WrapPanel>
                 <TextBlock><Run Text="Show active Batches"/></TextBlock>
             </WrapPanel>
