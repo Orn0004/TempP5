@@ -16,6 +16,7 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using P5_WPF.ViewModels;
 using System.Windows.Forms;
+using System.Media;
 
 namespace P5_WPF
 {
@@ -68,11 +69,12 @@ namespace P5_WPF
                         con.Open();
                         cmd.ExecuteNonQuery();
                         con.Close();
+                        System.Windows.Forms.MessageBox.Show($"Batch {New_Batch.Text} sucessfully connected to DH22 Sensor {SensorCB.SelectedValue}");
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    System.Windows.Forms.MessageBox.Show("Error: Duplicate Batch.");
+                    System.Windows.Forms.MessageBox.Show($"ERROR: Batch {New_Batch.Text} is connected to another DH22 Sensor");
                 }
         }
         private void findBatchID(string CS, int id)

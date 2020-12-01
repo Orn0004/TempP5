@@ -152,5 +152,6 @@
   <ItemGroup>
     <Resource Include="Images\Novefa_Logo.PNG" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -23,8 +23,6 @@
         <ComboBox  Margin="0,5,543,5" Name="SensorCB" Grid.Column="1">
         </ComboBox>
 
-
-
         <!--<Label Grid.Row="1">Current Batch:</Label>
         <Label x:Name="CurrentBatch" Content="{Binding ElementName=SensorCB, Path=SelectedItem}" Grid.Column="1" Margin="20,26,602,0" Grid.RowSpan="2"/>-->
        
