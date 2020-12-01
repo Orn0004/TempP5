@@ -98,9 +98,6 @@
       <DependentUpon>SingleBatch_Window.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\BatchesVm.cs" />
-    <Compile Include="TestWindow.xaml.cs">
-      <DependentUpon>TestWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModels\MainWindowVm.cs" />
     <Compile Include="ViewModels\SensorsVm.cs" />
     <Compile Include="ViewModels\SingleBatchVm.cs" />
@@ -121,10 +118,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="SingleBatch_Window.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TestWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

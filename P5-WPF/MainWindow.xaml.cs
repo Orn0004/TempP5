@@ -103,7 +103,7 @@ namespace P5_WPF
 
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("Error: You have not chosen a Batch.");
+                //System.Windows.Forms.MessageBox.Show("Error: You have not chosen a Batch.");
             }    
         }
 
@@ -123,7 +123,7 @@ namespace P5_WPF
 
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show("Error: You have not chosen a Batch.");
+                //System.Windows.Forms.MessageBox.Show("Error: You have not chosen a Batch.");
             }
         }
 

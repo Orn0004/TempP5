@@ -14,31 +14,35 @@ namespace P5_WPF.ViewModels
     {
         public SensorsVm()
         {
+            
+            DataTable dt = new DataTable();
             string CS = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
             //ActiveSensorsInjection(CS);
         }
-        //private void ActiveSensorsInjection(string CS)
-        //{
-        //    using (MySqlConnection connection = new MySqlConnection(CS))
-        //    {
-        //        try
-        //        {
-        //            string query = "SELECT ID from aktivesensorer";
-        //            MySqlDataAdapter da = new MySqlDataAdapter(query, connection);
-        //            connection.Open();
-        //            DataSet ds = new DataSet();
-        //            da.Fill(ds, "Sensor");
-        //            cmbTripName.DisplayMember = "ID";
-        //            cmbTripName.ValueMember = "ID";
-        //            cmbTripName.DataSource = ds.Tables["Sensor"];
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            // write exception info to log or anything else
-        //            MessageBox.Show("Error occured!");
-        //        }
-        //    }
-        //}
+        private void ActiveSensorsInjection(string CS)
+        {
+            using (MySqlConnection connection = new MySqlConnection(CS))
+            string CmdString = $"SELECT * FROM aktivesensor;
+            MySqlDataAdapter adapter = new MySqlDataAdapter();
+            adapter.SelectCommand = new MySqlCommand(CmdString, connection);
+            adapter.Fill(dt);
+
+            {
+                try
+                {
+                    da = new MySqlDataAdapter(connection);
+                    da.Fill(dt);
+                    Combo1.DataSource = dt;
+                    Combo1.DataTextField = dtbl.Columns["ClerkId"].ToString();
+                    Combo1.DataBind();
+                }
+                catch (Exception ex)
+                {
+                    connection.Close();
+
+                }
+            }
+        }
     }
 }
 
