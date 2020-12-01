@@ -65,7 +65,7 @@ namespace P5_WPF.ViewModels
                     {
                         foreach (float item in activeTemperatureList.Take(12))
                         {
-                            if (item > 19 && item < 25)
+                            if (item <= 20 || item >= 24)
                             {
                                 temperaturewithinRange = false;
                                 break;
@@ -75,9 +75,9 @@ namespace P5_WPF.ViewModels
                     }
                     while (humiditywithinRange == true )
                     {
-                        foreach (float item in activeHumidityList.Take(12))
+                        foreach (var item in activeHumidityList.Take(12))
                         {
-                            if (item > 39 && item < 71)
+                            if (item <= 40 || item >= 70)
                             {
                                 humiditywithinRange = false;
                                 break;
