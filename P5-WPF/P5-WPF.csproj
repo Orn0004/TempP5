@@ -88,6 +88,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BatchManagement_Window.xaml.cs">
+      <DependentUpon>BatchManagement_Window.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\BatchesModel.cs" />
     <Compile Include="Models\BatchIDModel.cs" />
     <Compile Include="Models\BatchModel.cs" />
@@ -99,7 +102,12 @@
       <DependentUpon>TestWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\MainWindowVm.cs" />
+    <Compile Include="ViewModels\SensorsVm.cs" />
     <Compile Include="ViewModels\SingleBatchVm.cs" />
+    <Page Include="BatchManagement_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
