@@ -45,7 +45,7 @@ namespace P5_WPF
             t = new DispatcherTimer(new TimeSpan(1), DispatcherPriority.Render,
             t_Tick, Dispatcher.CurrentDispatcher); t.IsEnabled = true;
 
-
+            
         }
         private void t_Tick(object sender, EventArgs e)
         {

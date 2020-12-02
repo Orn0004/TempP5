@@ -23,14 +23,17 @@ namespace P5_WPF
         public DataView archivedBatches { get; private set; }
         public List<int> activeBatchIds { get; private set; }
         public List<int> archivedBatchIds { get; private set; }
+        public string dbConnectionColor { get; private set; }
         public string myTitle { get; private set; }
         public BatchesVm()
         {
             myTitle = "Novefa RoomMonitor";
             string CS = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
-
+            
             ActiveBatchesInjection(CS);
             ArchivedBatchesInjection(CS);
+            
+
         }
 
         private void ActiveBatchesInjection(string CS)
@@ -74,10 +77,13 @@ namespace P5_WPF
                 //converting DataView allBatches BatchID's to a generic list.
                 archivedBatchIds = archivedBatches.ToTable().Rows.OfType<DataRow>()
                     .Select(dr => dr.Field<int>("BatchID")).ToList();
+
+                dbConnectionColor = "Green";
             }
             catch (Exception)
             {
-                System.Windows.Forms.MessageBox.Show("Cannot establish connection");
+                dbConnectionColor = "Red";
+                System.Windows.Forms.MessageBox.Show("Cannot establish connection to database");
             }
         }
     }

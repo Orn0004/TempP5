@@ -25,6 +25,7 @@ namespace P5_WPF
     /// </summary>
     public partial class BatchManagement_Window : Window
     {
+        public List<string> sensordata = new List<string>();
         public BatchManagement_Window()
         {
             InitializeComponent();
@@ -34,25 +35,29 @@ namespace P5_WPF
             //SensorCB.Items.Insert(0, "-SELECT SENSOR-");
             SensorCB.SelectedIndex = 0;
         }
+
+        private void SensorCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (sensordata.Any()) 
+            { 
+            CurrentBatch.Content = sensordata[SensorCB.SelectedIndex];
+            }
+        }
         public void sensorsInject(string CS)
         {
+            SensorCB.Items.Clear();
+            sensordata.Clear();
             using (MySqlConnection conn = new MySqlConnection(CS))
             {
                 string query = $"SELECT ID, BatchID FROM aktivesensorer";
                 MySqlCommand sqlCmd = new MySqlCommand(query, conn);
                 conn.Open();
                 MySqlDataReader sqlReader = sqlCmd.ExecuteReader();
-                Dictionary<string, string> sensordata = new Dictionary<string,string>();
                 while (sqlReader.Read())
                 {
-
                     SensorCB.Items.Add(sqlReader["ID"].ToString());
-                    sensordata.Add(sqlReader["ID"].ToString(), sqlReader["BatchID"].ToString());
-
+                    sensordata.Add(sqlReader["BatchID"].ToString());
                 }
-
-
-
                 sqlReader.Close();
             }
         }
@@ -63,38 +68,19 @@ namespace P5_WPF
             using (MySqlConnection con = new MySqlConnection(CS))
                 try
                 {
-                    {
-                        MySqlCommand cmd = new MySqlCommand($"UPDATE aktivesensorer SET BatchID = (@BatchID) WHERE ID = {SensorCB.SelectedValue}", con);
-                        cmd.Parameters.AddWithValue("@BatchID", New_Batch.Text);
-                        con.Open();
-                        cmd.ExecuteNonQuery();
-                        con.Close();
-                        System.Windows.Forms.MessageBox.Show($"Batch {New_Batch.Text} sucessfully connected to DH22 Sensor {SensorCB.SelectedValue}");
-                    }
+                    MySqlCommand cmd = new MySqlCommand($"UPDATE aktivesensorer SET BatchID = (@BatchID) WHERE ID = {SensorCB.SelectedValue}", con);
+                    cmd.Parameters.AddWithValue("@BatchID", New_Batch.Text);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    System.Windows.Forms.MessageBox.Show($"Batch {New_Batch.Text} successfully connected to DH22 Sensor {SensorCB.SelectedValue}");
+                    this.Close();
                 }
                 catch (Exception)
                 {
                     System.Windows.Forms.MessageBox.Show($"ERROR: Batch {New_Batch.Text} is connected to another DH22 Sensor");
                 }
-        }
-        private void findBatchID(string CS, int id)
-        {
-            using (MySqlConnection conn = new MySqlConnection(CS))
-            {
-                try
-                {
-                    string query = $"SELECT BatchID FROM aktivesensorer WHERE ID = {id}";
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
-                    conn.Open();
-                    DataSet ds = new DataSet();
-                    adapter.Fill(ds);
-                }
-                catch (Exception ex)
-                {
-                    // write exception info to log or anything else
-                    System.Windows.Forms.MessageBox.Show("Error occured!");
-                }
-            }
+           
         }
     }
 }
