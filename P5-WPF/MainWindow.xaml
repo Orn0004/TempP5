@@ -42,7 +42,7 @@
         </Label>
         <Image Source="/Images/Novefa_Logo.PNG" Margin="0,-33,582,338" />
         
-        <Button Click="Batch_Click" HorizontalAlignment="Left"  FontWeight="Bold" Margin="673,6,0,414" Width="105"  Name="Settings">
+        <Button Click="Settings_Click" HorizontalAlignment="Left"  FontWeight="Bold" Margin="673,6,0,414" Width="105"  Name="Settings">
             <DockPanel>
                 <Image Source="/Images/gear.png" Margin=" 0,0,30,0"  />
                 <WrapPanel>

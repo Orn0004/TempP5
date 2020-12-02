@@ -71,6 +71,11 @@ namespace P5_WPF
         {
             refresh();
         }
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            Settings_Window settings = new Settings_Window();
+            settings.Show();
+        }
         private void Batch_Click(object sender, RoutedEventArgs e)
         {
 
