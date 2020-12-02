@@ -12,29 +12,31 @@ namespace P5_WPF.ViewModels
 {
     class SensorsVm
     {
+        public DataView sensors { get; private set; }
         public SensorsVm()
         {
-
             DataTable dt = new DataTable();
             string CS = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+            SensorsInject(CS);
         }
-        private void FindBatchID(string CS, int id)
+
+        private void SensorsInject(string CS)
         {
-            using (MySqlConnection conn = new MySqlConnection(CS))
-            { 
-                    try
-                    {
-                        string query = $"SELECT BatchID FROM aktivesensorer WHERE ID = {id}";
-                        MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
-                        conn.Open();
-                        DataSet ds = new DataSet();
-                        adapter.Fill(ds);
-                    }
-                    catch (Exception ex)
-                    {
-                        // write exception info to log or anything else
-                        MessageBox.Show("Error occured!");
-                    }
+            DataTable dt = new DataTable();
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(CS))
+                {
+                    string CmdString = $"SELECT * FROM aktivesensorer";
+                    MySqlDataAdapter adapter = new MySqlDataAdapter();
+                    adapter.SelectCommand = new MySqlCommand(CmdString, connection);
+                    adapter.Fill(dt);
+                }
+                //Dataview of the selected sql table from query
+                sensors = dt.DefaultView;
+            }
+            catch (Exception)
+            {
             }
         }
     }

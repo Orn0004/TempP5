@@ -17,6 +17,7 @@ using System.Data;
 using P5_WPF.ViewModels;
 using System.Windows.Forms;
 using System.Media;
+using System.Text.RegularExpressions;
 
 namespace P5_WPF
 {
@@ -38,9 +39,9 @@ namespace P5_WPF
 
         private void SensorCB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (sensordata.Any()) 
-            { 
-            CurrentBatch.Content = sensordata[SensorCB.SelectedIndex];
+            if (sensordata.Any())
+            {
+                CurrentBatch.Content = sensordata[SensorCB.SelectedIndex];
             }
         }
         public void sensorsInject(string CS)
@@ -62,25 +63,37 @@ namespace P5_WPF
             }
         }
 
+        private void INTonly(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
         private void addToDB(object sender, RoutedEventArgs e)
         {
-            var CS = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
-            using (MySqlConnection con = new MySqlConnection(CS))
-                try
-                {
-                    MySqlCommand cmd = new MySqlCommand($"UPDATE aktivesensorer SET BatchID = (@BatchID) WHERE ID = {SensorCB.SelectedValue}", con);
-                    cmd.Parameters.AddWithValue("@BatchID", New_Batch.Text);
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                    con.Close();
-                    System.Windows.Forms.MessageBox.Show($"Batch {New_Batch.Text} successfully connected to DH22 Sensor {SensorCB.SelectedValue}");
-                    this.Close();
-                }
-                catch (Exception)
-                {
-                    System.Windows.Forms.MessageBox.Show($"ERROR: Batch {New_Batch.Text} is connected to another DH22 Sensor");
-                }
-           
+            if (New_Batch.Text.Trim() == string.Empty)
+                System.Windows.MessageBox.Show("ERROR: 'New Batch'-Textbox is empty");
+            else
+            {
+                var CS = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
+                using (MySqlConnection con = new MySqlConnection(CS))
+                    try
+                    {
+                        MySqlCommand cmd = new MySqlCommand($"UPDATE aktivesensorer SET BatchID = (@BatchID) WHERE ID = {SensorCB.SelectedValue}", con);
+                        cmd.Parameters.AddWithValue("@BatchID", New_Batch.Text);
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                        System.Windows.Forms.MessageBox.Show($"Batch {New_Batch.Text} successfully connected to DH22 Sensor {SensorCB.SelectedValue}");
+                        this.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        System.Windows.Forms.MessageBox.Show(ex.Message);
+                        //System.Windows.Forms.MessageBox.Show($"ERROR: Batch {New_Batch.Text} is connected to another DH22 Sensor");
+                    }
+            }
+
         }
     }
 }

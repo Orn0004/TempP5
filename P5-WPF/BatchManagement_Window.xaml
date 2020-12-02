@@ -27,11 +27,23 @@
         <Label x:Name="CurrentBatch" Grid.Column="1" Margin="20,26,602,0" Grid.RowSpan="2"/>
        
  <Label Grid.Row="2">New Batch:</Label>
-        <TextBox Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" Name ="New_Batch"/>
-        <Button Click ="addToDB" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,613,0">
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" Name ="New_Batch" PreviewTextInput="INTonly"/>
+        <Button Click ="addToDB" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,602,159">
             <WrapPanel>
                 <TextBlock>Connect new batch to sensor</TextBlock>
             </WrapPanel>
         </Button>
+        <ListView ItemsSource="{Binding activeBatches}" x:Name="batcheslist"  Margin="120,93,91,70" Grid.ColumnSpan="2" Grid.Row="3" >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="Batch ID" Width="70"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Temperatur_Celsius}" Header="Current temperature (in Celsius)" Width="180"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Luftfugtighed_Procent}" Header="Current humidity (in %)" Width="160"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Tidspunkt}" Header="Timestamp" Width="140"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
     </Grid>
 </Window>
