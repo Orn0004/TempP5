@@ -63,7 +63,7 @@ namespace P5_WPF
 
         private void RefreshTable(object sender, RoutedEventArgs e)
         {
-            TimerDisplay.Text = start.ToString("dd MMMM yyyy hh:mm:ss tt");
+            TimerDisplay.Text = start.ToString("hh:mm:ss tt");
             DataContext = new BatchesVm();
             start = DateTime.Now;
             counter = countAmount;
