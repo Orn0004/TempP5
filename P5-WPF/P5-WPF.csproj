@@ -91,9 +91,15 @@
     <Compile Include="BatchManagement_Window.xaml.cs">
       <DependentUpon>BatchManagement_Window.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ValueSettings_Window.xaml.cs">
+      <DependentUpon>ValueSettings_Window.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\BatchesModel.cs" />
     <Compile Include="Models\BatchIDModel.cs" />
     <Compile Include="Models\BatchModel.cs" />
+    <Compile Include="Settings_Window.xaml.cs">
+      <DependentUpon>Settings_Window.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SingleBatch_Window.xaml.cs">
       <DependentUpon>SingleBatch_Window.xaml</DependentUpon>
     </Compile>
@@ -102,6 +108,10 @@
     <Compile Include="ViewModels\SensorsVm.cs" />
     <Compile Include="ViewModels\SingleBatchVm.cs" />
     <Page Include="BatchManagement_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ValueSettings_Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -117,6 +127,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Settings_Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SingleBatch_Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
