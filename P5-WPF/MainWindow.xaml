@@ -66,41 +66,38 @@
         <!-- BODY -->
         <ContentPresenter Margin="0,67,0,84"/>
 
-        <ListView ItemsSource="{Binding activeBatches}" x:Name="batcheslist"  Margin="225,67,-24,84" Grid.ColumnSpan="2" MouseDoubleClick="batchesList_MouseDoubleClick" ItemContainerStyle="{StaticResource alternatingListViewItemStyle}" AlternationCount="2">
+        <ListView ItemsSource="{Binding activeBatches}" x:Name="batcheslist"  Margin="0,72,-24,84" Grid.ColumnSpan="2" MouseDoubleClick="batchesList_MouseDoubleClick" ItemContainerStyle="{StaticResource alternatingListViewItemStyle}" AlternationCount="2">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="Batch ID" Width="70"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="Batch ID" Width="180"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Temperatur_Celsius}" Header="Current temperature (in Celsius)" Width="180"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Luftfugtighed_Procent}" Header="Current humidity (in %)" Width="160"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Tidspunkt}" Header="Timestamp" Width="140"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Luftfugtighed_Procent}" Header="Current humidity (in %)" Width="180"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Tidspunkt}" Header="Timestamp" Width="270"/>
                 </GridView>
             </ListView.View>
         </ListView>
 
         <ListView ItemsSource="{Binding archivedBatches}" x:Name="archivedbatcheslist"  Margin="225,67,-24,84" Grid.ColumnSpan="2" MouseDoubleClick="archivedbatchesList_MouseDoubleClick" Visibility="Hidden" ItemContainerStyle="{StaticResource alternatingListViewItemStyle}" AlternationCount="2" >
             <ListView.View>
-
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="Batch ID" Width="70"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="Batch ID" Width="180"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Temperatur_Celsius}" Header="Current temperature (in Celsius)" Width="180"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Luftfugtighed_Procent}" Header="Current humidity (in %)" Width="160"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Tidspunkt}" Header="Timestamp" Width="140"/>
-
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Luftfugtighed_Procent}" Header="Current humidity (in %)" Width="180"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Tidspunkt}" Header="Timestamp" Width="270"/>
                 </GridView>
-
             </ListView.View>
         </ListView>
 
 
         
 
-        <Button Click="Batch_Click" HorizontalAlignment="Left"  FontWeight="Bold" Margin="20,181,0,213" Width="149"  Name="Batch_click_button">
+        <Button Click="Batch_Click" HorizontalAlignment="Left"  FontWeight="Bold" Margin="256,297,0,97" Width="149"  Name="Batch_click_button">
             <WrapPanel>
                 <TextBlock>Batch management</TextBlock>
             </WrapPanel>
         </Button>
         
-        <Button Click="NotVisible_Click" HorizontalAlignment="Left" FontWeight="Bold"  Width="149" Name="archive_button" Margin="20,100,0,289">
+        <Button Click="NotVisible_Click" HorizontalAlignment="Left" FontWeight="Bold"  Width="149" Name="archive_button" Margin="453,305,0,84">
             <WrapPanel>
                 <TextBlock><Run Text="Show archived batches"/></TextBlock>
             </WrapPanel>

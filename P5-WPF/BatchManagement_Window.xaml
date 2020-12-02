@@ -47,7 +47,7 @@
         <Label x:Name="CurrentBatch" Grid.Column="1" Margin="98,0,0,24" Grid.RowSpan="2" Grid.Row="1"/>
 
         <Label Grid.Row="2" Grid.ColumnSpan="2">New Batch:</Label>
-        <TextBox Grid.Row="2" Grid.Column="1" Margin="72,5,21,5" Name ="New_Batch" PreviewTextInput="INTonly"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="72,5,0,5" Name ="New_Batch" PreviewTextInput="INTonly"/>
         <Button Click ="addToDB" Grid.Row="3" Grid.Column="0" Margin="10,0,0,43" Grid.ColumnSpan="2">
             <WrapPanel>
                 <TextBlock Width="89"><Run Text="Insert new Batch"/></TextBlock>
