@@ -5,11 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P5_WPF"
         mc:Ignorable="d"
-        Title="BatchManagement_Window" Height="450" Width="800">
-    <Grid>
+        Title="Batch Management" Height="504.457" Width="261.603">
+    <Grid Margin="0,0,2,2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="135.793"/>
+            <ColumnDefinition Width="253*" />
+            <ColumnDefinition Width="52*"/>
+            <ColumnDefinition Width="21*"/>
+            <ColumnDefinition Width="49*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -18,28 +22,34 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Label>Sensor</Label>
+        <Label Grid.ColumnSpan="2">Sensor</Label>
 
-        <ComboBox SelectionChanged="SensorCB_SelectedIndexChanged"  Margin="0,5,543,5" x:Name="SensorCB" Grid.Column="1" >
+        <ComboBox SelectionChanged="SensorCB_SelectedIndexChanged"  Margin="86,5,60,5" x:Name="SensorCB" Grid.Column="1" Grid.ColumnSpan="2" >
         </ComboBox>
 
-        <Label Grid.Row="1">Current Batch:</Label>
-        <Label x:Name="CurrentBatch" Grid.Column="1" Margin="20,26,602,0" Grid.RowSpan="2"/>
-       
- <Label Grid.Row="2">New Batch:</Label>
-        <TextBox Grid.Row="2" Grid.Column="1" Margin="0,0,0,10" Name ="New_Batch" PreviewTextInput="INTonly"/>
-        <Button Click ="addToDB" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,0,602,159">
+        <Label Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,37,0">Current Batch:</Label>
+        <Label x:Name="CurrentBatch" Grid.Column="1" Margin="98,1,0,23" Grid.RowSpan="2" Grid.Row="1"/>
+
+        <Label Grid.Row="2" Grid.ColumnSpan="2">New Batch:</Label>
+        <TextBox Grid.Row="2" Grid.Column="1" Margin="72,5,60,5" Name ="New_Batch" PreviewTextInput="INTonly" Grid.ColumnSpan="2"/>
+        <Button Click ="addToDB" Grid.Row="3" Grid.Column="0" Margin="0,0,35,159" Grid.ColumnSpan="3">
             <WrapPanel>
-                <TextBlock>Connect new batch to sensor</TextBlock>
+                <TextBlock Width="193"><Run Text="Connect new batch to sensor"/></TextBlock>
             </WrapPanel>
         </Button>
-        <ListView ItemsSource="{Binding activeBatches}" x:Name="batcheslist"  Margin="120,93,91,70" Grid.ColumnSpan="2" Grid.Row="3" >
+        <ListView ItemsSource="{Binding sensors}" x:Name="sensorslist"  Margin="7,44,24,26" Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Column="1" RenderTransformOrigin="0.5,0.5" >
+            <ListView.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.646"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="-0.739"/>
+                </TransformGroup>
+            </ListView.RenderTransform>
             <ListView.View>
                 <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=ID}" Header="Sensor ID" Width="70"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="Batch ID" Width="70"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Temperatur_Celsius}" Header="Current temperature (in Celsius)" Width="180"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Luftfugtighed_Procent}" Header="Current humidity (in %)" Width="160"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Tidspunkt}" Header="Timestamp" Width="140"/>
                 </GridView>
             </ListView.View>
         </ListView>

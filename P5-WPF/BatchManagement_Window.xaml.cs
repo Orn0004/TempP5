@@ -31,6 +31,8 @@ namespace P5_WPF
         {
             InitializeComponent();
 
+            DataContext = new SensorsVm();
+
             string CS = ConfigurationManager.ConnectionStrings["myConnectionString"].ConnectionString;
             sensorsInject(CS);
             //SensorCB.Items.Insert(0, "-SELECT SENSOR-");
