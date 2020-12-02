@@ -32,18 +32,18 @@ namespace P5_WPF
         DispatcherTimer t;
         DateTime start;
         int counter ;
-        int countAmount = 5;       
+        int countAmount = 750000;       
         public MainWindow()
         {
             InitializeComponent();
             DataContext = new BatchesVm();
             start = DateTime.Now;
             var startTimeSpan = TimeSpan.Zero;
-            var periodTimeSpan = TimeSpan.FromMinutes(5);
-            
-
+            var periodTimeSpan = TimeSpan.FromMinutes(1);
+            counter = countAmount;
             t = new DispatcherTimer(new TimeSpan(1), DispatcherPriority.Render,
             t_Tick, Dispatcher.CurrentDispatcher); t.IsEnabled = true;
+            refresh();
 
             
         }
@@ -54,19 +54,22 @@ namespace P5_WPF
             
             if (counter == 0)
             {
-
-               
-                
+                refresh();
             }
             counter--;
         }
 
-        private void RefreshTable(object sender, RoutedEventArgs e)
+        private void refresh()
         {
-            TimerDisplay.Text = start.ToString("hh:mm:ss tt");
+            TimerDisplay.Text = start.ToString("HH:mm:ss");
             DataContext = new BatchesVm();
             start = DateTime.Now;
             counter = countAmount;
+        }
+
+        private void RefreshTable(object sender, RoutedEventArgs e)
+        {
+            refresh();
         }
         private void Batch_Click(object sender, RoutedEventArgs e)
         {
