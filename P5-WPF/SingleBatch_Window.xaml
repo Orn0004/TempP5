@@ -7,14 +7,40 @@
         mc:Ignorable="d"
         Title="{Binding Path=myTitle}" Height="759.7" Width="1130">
 
-    <Grid>
+    <Grid Margin="0,0,-26,3">
+        <Grid.Resources>
+
+            <Style x:Key="alternatingListViewItemStyle" TargetType="{x:Type ListViewItem}">
+                <Style.Triggers>
+                    <!-- setting up triggers for alternate background colors -->
+                    <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                        <Setter Property="Background" Value="Gainsboro"></Setter>
+                    </Trigger>
+                    <Trigger Property="ItemsControl.AlternationIndex" Value="2">
+                        <Setter Property="Background" Value="White"></Setter>
+                    </Trigger>
+                </Style.Triggers>
+                <!-- setting row height here -->
+                <Setter Property="Height" Value="30" />
+            </Style>
+
+        </Grid.Resources>
+
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="57*"/>
-            <ColumnDefinition Width="287*"/>
-            <ColumnDefinition Width="53*"/>
-            <ColumnDefinition Width="164*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="115*"/>
+            <ColumnDefinition Width="587*"/>
+            <ColumnDefinition Width="108*"/>
+            <ColumnDefinition Width="336*"/>
         </Grid.ColumnDefinitions>
-        <ListView ItemsSource="{Binding activesinglebatch}" x:Name="batchinfo" Margin="62,88,164,31" Grid.ColumnSpan="2">
+
+
+
+        <Border Grid.Row="0" Background="Gainsboro" Margin="-14,0,-12,598" Grid.ColumnSpan="5"/>
+
+
+        <ListView ItemsSource="{Binding activesinglebatch}" x:Name="batchinfo" Margin="26,119,118,31" Grid.ColumnSpan="2" Grid.Column="1" ItemContainerStyle="{StaticResource alternatingListViewItemStyle}" AlternationCount="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="Batch ID" Width="60"/>
@@ -24,7 +50,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView ItemsSource="{Binding archivedsinglebatch}" x:Name="archivedbatchinfo" Margin="62,88,164,31" Grid.ColumnSpan="2">
+        <ListView ItemsSource="{Binding archivedsinglebatch}" x:Name="archivedbatchinfo" Margin="26,119,118,31" Grid.ColumnSpan="2" Grid.Column="1" ItemContainerStyle="{StaticResource alternatingListViewItemStyle}" AlternationCount="2">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="Batch ID" Width="60"/>
@@ -35,7 +61,7 @@
             </ListView.View>
         </ListView>
 
-        <Label Foreground="Red" FontWeight="Bold" FontSize="15" Grid.ColumnSpan="3" Margin="492,34,30,646" Grid.Column="1">
+        <Label Foreground="Red" FontWeight="Bold" FontSize="15" Grid.ColumnSpan="3" Margin="522,137,0,543" Grid.Column="2">
             <Label.Style>
                 <Style TargetType="{x:Type Label}">
                     <Style.Triggers>
@@ -46,7 +72,7 @@
                 </Style>
             </Label.Style>
         </Label>
-        <Label Foreground="Red" FontWeight="Bold" FontSize="15" Grid.ColumnSpan="3" Margin="492,362,10,324" Grid.Column="1">
+        <Label Foreground="Red" FontWeight="Bold" FontSize="15" Grid.ColumnSpan="3" Margin="514,444,-12,241" Grid.Column="2">
             <Label.Style>
                 <Style TargetType="{x:Type Label}">
                     <Style.Triggers>
@@ -57,15 +83,15 @@
                 </Style>
             </Label.Style>
         </Label>
-        <Image Source="/Images/Novefa_Logo.PNG" Margin="0,0,482,646" Grid.ColumnSpan="2" />
-        <Canvas Grid.ColumnSpan="2">
-            <d3:Chart BottomTitle="Date" LeftTitle="Temperature" Height="287" Width="513" Canvas.Left="565" Canvas.Top="398">
+        <Image Source="/Images/Novefa_Logo.PNG" Margin="0,-3,400,612" Grid.ColumnSpan="2" Grid.Column="1" />
+        <Canvas Grid.ColumnSpan="3">
+            <d3:Chart BottomTitle="Date" LeftTitle="Temperature" Height="242" Width="496" Canvas.Left="582" Canvas.Top="474">
                 <d3:LineGraph x:Name="linegraphtemp" Description="Linjegraph of temperature over time" Stroke="DarkRed" StrokeThickness="3"/>
             </d3:Chart>
-            <d3:Chart BottomTitle="Date" LeftTitle="Humidity" Height="285" Width="513" Canvas.Left="565" Canvas.Top="71">
+            <d3:Chart BottomTitle="Date" LeftTitle="Humidity" Height="242" Width="496" Canvas.Left="582" Canvas.Top="176">
                 <d3:LineGraph x:Name="linegraphhum" Description="Linegraph of humidity over time" Stroke="Blue" StrokeThickness="3"/>
             </d3:Chart>
-            <Label Content="{Binding myTitle}" FontSize="20" FontWeight="Bold" Background="GhostWhite" x:Name="batchNo" HorizontalAlignment="Left" Width="130" Height="35" VerticalAlignment="Bottom" Canvas.Left="218" Canvas.Top="28"/>
+            <Label Content="{Binding myTitle}" FontSize="20" FontWeight="Bold" Background="Gainsboro" x:Name="batchNo" HorizontalAlignment="Left" Width="156" Height="40" VerticalAlignment="Bottom" Canvas.Left="490" Canvas.Top="28"/>
         </Canvas>
 
 
