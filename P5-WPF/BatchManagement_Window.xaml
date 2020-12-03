@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P5_WPF"
         mc:Ignorable="d"
-        Title="Batch Management" Height="376.214" Width="200.408">
+        Title="Batch Management" Height="406.013" Width="215.308">
     <Grid Margin="0,0,2,2">
         <Grid.Resources>
 
@@ -26,7 +26,7 @@
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="174"/>
+            <ColumnDefinition Width="192"/>
             <ColumnDefinition />
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition Width="0*"/>
