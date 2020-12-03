@@ -33,25 +33,25 @@
         </Grid.ColumnDefinitions>
 
         <!-- HEADER-->
-        <Border Grid.Row="0" Background="Gainsboro" Margin="0,0,0,374"/>
-        <Label FontSize="20" FontWeight="Bold" Background="Gainsboro" Margin="311,10,257,389" Name="activetext">
+        <Border Grid.Row="0" Background="Gainsboro" Margin="0,0,0,362"/>
+        <Label FontSize="20" FontWeight="Bold" Background="Gainsboro" Margin="283,16,290,389" Name="activetext">
             Batches in production
         </Label>
-        <Label FontSize="20" FontWeight="Bold" Background="Gainsboro" Margin="297,10,47,389" Name="archivetext" Visibility="Hidden">
-            Archived Batches
+        <Label FontSize="20" FontWeight="Bold" Background="Gainsboro"  Margin="283,16,290,389" Name="archivetext" Visibility="Hidden">
+            Batches in archive
         </Label>
         <Image Source="/Images/Novefa_Logo.PNG" Margin="0,-33,582,338" />
-        
-        <Button Click="Settings_Click" HorizontalAlignment="Left"  FontWeight="Bold" Margin="673,6,0,414" Width="105"  Name="Settings">
+
+        <Button Click="Settings_Click" HorizontalAlignment="Left"  FontWeight="Bold" Margin="673,6,0,406" Width="105"  Name="Settings">
             <DockPanel>
-                <Image Source="/Images/gear.png" Margin=" 0,0,30,0"  />
+                <Image Source="/Images/gear.png" Margin=" 0,0,30,0" Width="23" Height="25"  />
                 <WrapPanel>
-                    <TextBlock RenderTransformOrigin="0.478,0.938" Width="50" Height="20"><Run Text="Settings"/></TextBlock>
+                    <TextBlock RenderTransformOrigin="0.478,0.938" Width="49" Height="17"><Run Text="Settings"/></TextBlock>
                 </WrapPanel>
             </DockPanel>
         </Button>
-        
-        <Button Click="RefreshTable" HorizontalAlignment="Left"  FontWeight="Bold" Margin="673,37,0,383" Width="105"  Name="refreshTable_button">
+
+        <Button Click="RefreshTable" HorizontalAlignment="Left"  FontWeight="Bold" Margin="673,36,0,378" Width="105"  Name="refreshTable_button">
 
             <DockPanel>
                 <Image Source="/Images/refresh-64x64.png"  />
@@ -61,64 +61,71 @@
 
             </DockPanel>
         </Button>
+        <Button Click="Batch_Click" HorizontalAlignment="Left"  FontWeight="Bold" Margin="563,6,0,406" Width="105"  Name="Batch_click_button">
+            <DockPanel>
+                <Image Source="/Images/sensor.png" Height="18" Width="46" HorizontalAlignment="Left" />
+                <WrapPanel>
+                    <TextBlock Height="24">Sensors</TextBlock>
+                </WrapPanel>
+            </DockPanel>
+        </Button>
+
+        <Button Click="NotVisible_Click"  HorizontalAlignment="Left" FontWeight="Bold"  Name="archive_button" Margin="563,36,0,378" Width="105">
+            <DockPanel>
+                <Image Source="/Images/archive.png" Height="18" Width="46" HorizontalAlignment="Left" />
+                <WrapPanel>
+                    <TextBlock HorizontalAlignment="Right" Height="27" Width="48"><Run Text="Archive"/></TextBlock>
+                </WrapPanel>
+            </DockPanel>
+        </Button>
+
+        <Button HorizontalAlignment="Left" Visibility="Hidden"   FontWeight="Bold"  Margin="563,36,0,378" Width="105" Click="Visible_Click" Name="active_button">
+            <DockPanel>
+                <Image Source="/Images/plant.png" Height="24" Width="32" HorizontalAlignment="Left" />
+                <WrapPanel>
+                    <TextBlock><Run Text="Production"/></TextBlock>
+                </WrapPanel>
+            </DockPanel>
+        </Button>
+
+
 
 
         <!-- BODY -->
         <ContentPresenter Margin="0,67,0,84"/>
 
-        <ListView ItemsSource="{Binding activeBatches}" x:Name="batcheslist"  Margin="225,67,-24,84" Grid.ColumnSpan="2" MouseDoubleClick="batchesList_MouseDoubleClick" ItemContainerStyle="{StaticResource alternatingListViewItemStyle}" AlternationCount="2">
+        <ListView ItemsSource="{Binding activeBatches}" x:Name="batcheslist"  Margin="0,72,-24,84" Grid.ColumnSpan="2" MouseDoubleClick="batchesList_MouseDoubleClick" ItemContainerStyle="{StaticResource alternatingListViewItemStyle}" AlternationCount="2">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="Batch ID" Width="70"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="Batch ID" Width="180"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Temperatur_Celsius}" Header="Current temperature (in Celsius)" Width="180"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Luftfugtighed_Procent}" Header="Current humidity (in %)" Width="160"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Tidspunkt}" Header="Timestamp" Width="140"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Luftfugtighed_Procent}" Header="Current humidity (in %)" Width="180"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Tidspunkt}" Header="Timestamp" Width="250"/>
                 </GridView>
             </ListView.View>
         </ListView>
 
-        <ListView ItemsSource="{Binding archivedBatches}" x:Name="archivedbatcheslist"  Margin="225,67,-24,84" Grid.ColumnSpan="2" MouseDoubleClick="archivedbatchesList_MouseDoubleClick" Visibility="Hidden" ItemContainerStyle="{StaticResource alternatingListViewItemStyle}" AlternationCount="2" >
+        <ListView ItemsSource="{Binding archivedBatches}" x:Name="archivedbatcheslist"   Margin="0,72,-24,84" Grid.ColumnSpan="2" MouseDoubleClick="archivedbatchesList_MouseDoubleClick" Visibility="Hidden" ItemContainerStyle="{StaticResource alternatingListViewItemStyle}" AlternationCount="2" >
             <ListView.View>
-
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="Batch ID" Width="70"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=BatchID}" Header="Batch ID" Width="180"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Temperatur_Celsius}" Header="Current temperature (in Celsius)" Width="180"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Luftfugtighed_Procent}" Header="Current humidity (in %)" Width="160"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Tidspunkt}" Header="Timestamp" Width="140"/>
-
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Luftfugtighed_Procent}" Header="Current humidity (in %)" Width="180"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Tidspunkt}" Header="Timestamp" Width="250"/>
                 </GridView>
-
             </ListView.View>
         </ListView>
-
-
-        
-
-        <Button Click="Batch_Click" HorizontalAlignment="Left"  FontWeight="Bold" Margin="20,181,0,213" Width="149"  Name="Batch_click_button">
-            <WrapPanel>
-                <TextBlock>Batch management</TextBlock>
-            </WrapPanel>
-        </Button>
-        
-        <Button Click="NotVisible_Click" HorizontalAlignment="Left" FontWeight="Bold"  Width="149" Name="archive_button" Margin="20,100,0,289">
-            <WrapPanel>
-                <TextBlock><Run Text="Show archived batches"/></TextBlock>
-            </WrapPanel>
-        </Button>
-        <Button HorizontalAlignment="Left" Visibility="Hidden" FontWeight="Bold" Margin="20,100,0,289" Width="149" Click="Visible_Click" Name="active_button">
-            <WrapPanel>
-                <TextBlock><Run Text="Show active Batches"/></TextBlock>
-            </WrapPanel>
-        </Button>
-
 
 
         <!-- FOOTER -->
-        <Border Background="Gainsboro" Margin="0,358,0,10"/>
-        <Label FontWeight ="bold" Margin="0,363,354,45">Time of last refresh :</Label>
-        <TextBlock FontWeight="Bold" x:Name="TimerDisplay" Margin="124,368,577,49" RenderTransformOrigin="0.495,0.444"/>
-        <Label Background="{Binding dbConnectionColor}" Margin="136,390,643,37"  RenderTransformOrigin="-14.354,7.208"></Label>
-        <Label FontWeight="Bold" Margin="0,383,643,0" Height="30" VerticalAlignment="Top" Content="DB Connection status" />
+
+        <Border Background="Gainsboro" Margin="0,348,0,3"/>
+        <Label FontWeight ="bold" Margin="585,358,-231,50" Grid.ColumnSpan="2">Time of last refresh :</Label>
+        <TextBlock FontWeight="Bold" x:Name="TimerDisplay" Margin="709,363,-8,54" RenderTransformOrigin="0.495,0.444" Grid.ColumnSpan="2"/>
+        <Label Background="{Binding dbConnectionColor}" Margin="719,387,58,42" ></Label>
+        <Label FontWeight="Bold" Margin="585,378,58,0" Height="30" VerticalAlignment="Top" Content="DB Connection status" />
+
+
 
 
     </Grid>
