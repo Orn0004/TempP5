@@ -67,7 +67,7 @@ namespace P5_WPF
                         Properties.Settings.Default.UpperHum = float.Parse(UpperBoundNew.Text);
                         Properties.Settings.Default.LowerHum = float.Parse(LowerBoundNew.Text);
                         Properties.Settings.Default.Save();
-                        System.Windows.Forms.MessageBox.Show($"New {ValueType} VALUE: '{LowerBoundNew.Text}-{UpperBoundNew.Text}'");
+                        System.Windows.Forms.MessageBox.Show($"New {ValueType} RANGE: '{LowerBoundNew.Text}-{UpperBoundNew.Text}'");
                         this.Close();
                     }
                     else
@@ -82,7 +82,7 @@ namespace P5_WPF
                         Properties.Settings.Default.UpperTemp = float.Parse(UpperBoundNew.Text);
                         Properties.Settings.Default.LowerTemp = float.Parse(LowerBoundNew.Text);
                         Properties.Settings.Default.Save();
-                        System.Windows.Forms.MessageBox.Show($"New {ValueType} VALUE: '{LowerBoundNew.Text}-{UpperBoundNew.Text}'");
+                        System.Windows.Forms.MessageBox.Show($"New {ValueType} RANGE: '{LowerBoundNew.Text}-{UpperBoundNew.Text}'");
                         this.Close();
                     }
                     else
