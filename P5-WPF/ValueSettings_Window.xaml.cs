@@ -38,57 +38,62 @@ namespace P5_WPF
             if (IsHumidity)
             {
                 ValueType = "HUMIDITY";
-                UpperBound.Content = UpperHum;
-                LowerBound.Content = LowerHum;
+                CurrentRange.Content = LowerHum.ToString() + "% - " + UpperHum.ToString() + "%";
                 RecommendedRange_Text.Content = "(Recommended range is 40 - 70%)";
                 CurrentValue_Text.Content = "Current humidity value range:";
             }
             else
             {
                 ValueType = "TEMPERATURE";
-                UpperBound.Content = UpperTemp;
-                LowerBound.Content = LowerTemp;
+                CurrentRange.Content = LowerTemp.ToString() + "C - " + UpperTemp.ToString() + "C";
                 RecommendedRange_Text.Content = "(Recommended range is 18 - 24 Celsius)";
                 CurrentValue_Text.Content = "Current temperature value range:";
             }
         }
         private void INTonly(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
+            Regex regex = new Regex("^[-,0-9]+$");
+            e.Handled = !regex.IsMatch(e.Text);
         }
 
         private void SaveValues(object sender, RoutedEventArgs e)
         {
-            if (IsHumidity)
-            {
-                if (float.Parse(UpperBoundNew.Text) > float.Parse(LowerBoundNew.Text))
+            if (!string.IsNullOrEmpty(UpperBoundNew.Text) && !string.IsNullOrEmpty(LowerBoundNew.Text))
                 {
-                    Properties.Settings.Default.UpperHum = float.Parse(UpperBoundNew.Text);
-                    Properties.Settings.Default.LowerHum = float.Parse(LowerBoundNew.Text);
-                    Properties.Settings.Default.Save();
-                    System.Windows.Forms.MessageBox.Show($"New {ValueType} VALUE: '{LowerHum}-{UpperHum}'");
-                    this.Close();
+                if (IsHumidity)
+                {
+                    if (float.Parse(UpperBoundNew.Text) > float.Parse(LowerBoundNew.Text))
+                    {
+                        Properties.Settings.Default.UpperHum = float.Parse(UpperBoundNew.Text);
+                        Properties.Settings.Default.LowerHum = float.Parse(LowerBoundNew.Text);
+                        Properties.Settings.Default.Save();
+                        System.Windows.Forms.MessageBox.Show($"New {ValueType} VALUE: '{LowerBoundNew.Text}-{UpperBoundNew.Text}'");
+                        this.Close();
+                    }
+                    else
+                    {
+                        System.Windows.Forms.MessageBox.Show("ERROR: Lower bound is higher than upper bound.");
+                    }
                 }
                 else
                 {
-                    System.Windows.Forms.MessageBox.Show("ERROR: Lower bound is higher than upper bound.");
+                    if (float.Parse(UpperBoundNew.Text) > float.Parse(LowerBoundNew.Text))
+                    {
+                        Properties.Settings.Default.UpperTemp = float.Parse(UpperBoundNew.Text);
+                        Properties.Settings.Default.LowerTemp = float.Parse(LowerBoundNew.Text);
+                        Properties.Settings.Default.Save();
+                        System.Windows.Forms.MessageBox.Show($"New {ValueType} VALUE: '{LowerBoundNew.Text}-{UpperBoundNew.Text}'");
+                        this.Close();
+                    }
+                    else
+                    {
+                        System.Windows.Forms.MessageBox.Show("ERROR: Lower bound is higher than upper bound.");
+                    }
                 }
             }
             else
             {
-                if (float.Parse(UpperBoundNew.Text) > float.Parse(LowerBoundNew.Text))
-                {
-                    Properties.Settings.Default.UpperTemp = float.Parse(UpperBoundNew.Text);
-                    Properties.Settings.Default.LowerTemp = float.Parse(LowerBoundNew.Text);
-                    Properties.Settings.Default.Save();
-                    System.Windows.Forms.MessageBox.Show($"New {ValueType} VALUE: '{LowerTemp}-{UpperTemp}'");
-                    this.Close();
-                }
-                else
-                {
-                    System.Windows.Forms.MessageBox.Show("ERROR: Lower bound is higher than upper bound.");
-                }
+                System.Windows.Forms.MessageBox.Show("Both values not filled.");
             }
 
         }

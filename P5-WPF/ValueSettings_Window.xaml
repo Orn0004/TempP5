@@ -7,15 +7,14 @@
         mc:Ignorable="d"
         Title="Change Value" Height="198.05" Width="247.214">
     <Grid Background="Gainsboro">
-        <Label FontWeight="Bold" x:Name="CurrentValue_Text" Background="Gainsboro" Margin="0,0,54,129"/>
-        <Label FontSize="8" x:Name="RecommendedRange_Text" Margin="60,16,-6,118"/>
-        <Label FontWeight="Bold" Margin="190,0,-11,118">-</Label>
-        <Label x:Name="LowerBound" Margin="173,0,31,132"/>
-        <Label x:Name="UpperBound" Margin="201,0,0,132"/>
+        <Label FontWeight="Bold" FontSize="9" x:Name="CurrentValue_Text" Background="Gainsboro" Margin="-4,0,65,132"/>
+        <Label FontSize="8" x:Name="RecommendedRange_Text" Margin="42,16,12,118"/>
+        <Label x:Name="CurrentRange" Margin="144,0,0,128"/>
+
         <Label Margin="7,43,130,67" Content="New Value &#xD;&#xA;Range:"/>
-        <TextBox x:Name="LowerBoundNew" Margin="73,54,130,82" MaxLength="3" PreviewTextInput="INTonly"></TextBox>
-        <Label FontWeight="Bold" FontSize="20" Margin="104,51,75,67">-</Label>
-        <TextBox x:Name="UpperBoundNew" PreviewTextInput="INTonly" MaxLength="3" Margin="129,54,75,82"/>
+        <TextBox x:Name="LowerBoundNew" Margin="73,54,130,82" MaxLength="4" PreviewTextInput="INTonly"></TextBox>
+        <Label FontWeight="Bold" FontSize="20" Margin="104,46,75,72">-</Label>
+        <TextBox x:Name="UpperBoundNew" PreviewTextInput="INTonly" MaxLength="4" Margin="129,54,75,82"/>
         <Button Click="SaveValues" Grid.Column="0" Background="DarkGray" Margin="74,100,75,26">
             <WrapPanel>
                 <TextBlock Width="93" Height="19"><Run Text="Change Values"/></TextBlock>
