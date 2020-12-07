@@ -65,7 +65,7 @@ namespace P5_WPF.ViewModels
                     {
                         foreach (float item in activeTemperatureList.Take(12))
                         {
-                            if (item <= Properties.Settings.Default.LowerTemp || item >= Properties.Settings.Default.UpperTemp)
+                            if (item < Properties.Settings.Default.LowerTemp || item > Properties.Settings.Default.UpperTemp)
                             {
                                 temperaturewithinRange = false;
                                 break;
@@ -77,7 +77,7 @@ namespace P5_WPF.ViewModels
                     {
                         foreach (var item in activeHumidityList.Take(12))
                         {
-                            if (item <= Properties.Settings.Default.LowerHum || item >= Properties.Settings.Default.UpperHum)
+                            if (item < Properties.Settings.Default.LowerHum || item > Properties.Settings.Default.UpperHum)
                             {
                                 humiditywithinRange = false;
                                 break;
