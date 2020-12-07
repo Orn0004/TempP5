@@ -8,7 +8,7 @@
         Title="Change Value" Height="198.05" Width="247.214">
     <Grid Background="Gainsboro">
         <Label FontWeight="Bold" FontSize="9" x:Name="CurrentValue_Text" Background="Gainsboro" Margin="-4,0,65,132"/>
-        <Label FontSize="8" x:Name="RecommendedRange_Text" Margin="42,16,12,118"/>
+        <Label FontSize="12" x:Name="RecommendedRange_Text" Margin="21,14,16,120"/>
         <Label x:Name="CurrentRange" Margin="144,0,0,128"/>
 
         <Label Margin="7,43,130,67" Content="New Value &#xD;&#xA;Range:"/>
