@@ -1,4 +1,4 @@
-﻿<Window x:Class="P5_WPF.SingleBatch_Window"
+﻿<Window  ResizeMode="NoResize" x:Class="P5_WPF.SingleBatch_Window"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -85,16 +85,17 @@
         </Label>
         <Image Source="/Images/Novefa_Logo.PNG" Margin="0,-3,400,612" Grid.ColumnSpan="2" Grid.Column="1" />
         <Canvas Grid.ColumnSpan="3">
+
             <d3:Chart BottomTitle="Date" LeftTitle="Temperature" Height="242" Width="496" Canvas.Left="582" Canvas.Top="474">
-                <d3:LineGraph x:Name="linegraphtemp" Description="Linjegraph of temperature over time" Stroke="DarkRed" StrokeThickness="3"/>
+                <d3:LineGraph x:Name="linegraphtemp" Description="Linjegraph of temperature over time"  Stroke="DarkRed" StrokeThickness="3"/>
             </d3:Chart>
-            <d3:Chart BottomTitle="Date" LeftTitle="Humidity" Height="242" Width="496" Canvas.Left="582" Canvas.Top="176">
-                <d3:LineGraph x:Name="linegraphhum" Description="Linegraph of humidity over time" Stroke="Blue" StrokeThickness="3"/>
+
+
+            <d3:Chart BottomTitle="Date" LeftTitle="Humidity" Height="242" Width="496" Canvas.Left="582" Canvas.Top="176" >
+                <d3:LineGraph x:Name="linegraphhum"  Description="Linegraph of humidity over time" Stroke="Blue" StrokeThickness="3"/>
             </d3:Chart>
             <Label Content="{Binding myTitle}" FontSize="20" FontWeight="Bold" Background="Gainsboro" x:Name="batchNo" HorizontalAlignment="Left" Width="156" Height="40" VerticalAlignment="Bottom" Canvas.Left="490" Canvas.Top="28"/>
         </Canvas>
-
-
     </Grid>
 
 </Window>
